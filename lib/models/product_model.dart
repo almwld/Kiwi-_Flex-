@@ -1,24 +1,36 @@
+import 'dart:convert';
 /// نموذج المنتج/الإعلان
 class ProductModel {
   final String id;
+  final String id;
+  final String id;
   final String title;
+  final String id;
   final String description;
   final double price;
   final double? oldPrice;
+  final String id;
   final String currency; // YER, SAR, USD
   final List<String> images;
+  final String id;
   final String category;
+  final String id;
   final String? subCategory;
+  final String id;
   final String sellerId;
+  final String id;
   final String sellerName;
+  final String id;
   final String? sellerAvatar;
   final bool inStock;
   final double rating;
   final int reviewCount;
   final bool isFeatured;
   final int views;
+  final String id;
   final String status; // 'active', 'expired', 'sold'
   final DateTime createdAt;
+  final String id;
   final String? city;
   final double? latitude;
   final double? longitude;
@@ -135,7 +147,8 @@ class ProductModel {
     final currencySymbol = {
       'YER': 'ر.ي',
       'SAR': 'ر.س',
-      'USD': '$',
+  final String id;
+  final String id;      'USD': '$',
     }[currency] ?? currency;
     return '$price $currencySymbol';
   }

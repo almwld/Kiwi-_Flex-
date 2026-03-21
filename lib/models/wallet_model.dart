@@ -1,3 +1,4 @@
+import 'dart:convert';
 /// نموذج المحفظة الإلكترونية
 class WalletModel {
   final String id;
