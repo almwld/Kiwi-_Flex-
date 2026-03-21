@@ -1,39 +1,40 @@
-import '../../widgets/custom_app_bar.dart';
-import '../widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import '../../widgets/custom_app_bar.dart';
 import '../../theme/app_theme.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
+  final List<Map<String, dynamic>> _settings = const [
+    {'title': 'الإشعارات', 'icon': Icons.notifications, 'color': Colors.blue},
+    {'title': 'الأمان والخصوصية', 'icon': Icons.security, 'color': Colors.green},
+    {'title': 'اللغة', 'icon': Icons.language, 'color': Colors.orange},
+    {'title': 'طرق الدفع', 'icon': Icons.payment, 'color': Colors.purple},
+    {'title': 'المساعدة والدعم', 'icon': Icons.help, 'color': Colors.teal},
+    {'title': 'عن التطبيق', 'icon': Icons.info, 'color': Colors.red},
+    {'title': 'سياسة الخصوصية', 'icon': Icons.privacy_tip, 'color': Colors.indigo},
+    {'title': 'تقييم التطبيق', 'icon': Icons.star, 'color': Colors.amber},
+  ];
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    final List<Map<String, dynamic>> settings = [
-      {'title': 'الإشعارات', 'icon': Icons.notifications_outlined, 'route': '/notifications_settings'},
-      {'title': 'الأمان', 'icon': Icons.security, 'route': '/security_settings'},
-      {'title': 'اللغة', 'icon': Icons.language, 'route': '/language'},
-      {'title': 'طرق الدفع', 'icon': Icons.payment, 'route': '/payment_methods'},
-      {'title': 'المساعدة والدعم', 'icon': Icons.help_outline, 'route': '/help_support'},
-      {'title': 'عن التطبيق', 'icon': Icons.info_outline, 'route': '/about'},
-      {'title': 'سياسة الخصوصية', 'icon': Icons.privacy_tip_outlined, 'route': '/privacy_policy'},
-    ];
-
     return Scaffold(
-      backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: CustomAppBar(title: 'الإعدادات'),
+      appBar: const CustomAppBar(title: 'الإعدادات'),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
-        itemCount: settings.length,
-        itemBuilder: (context, index) {
+        itemCount: _settings.length,
+        itemBuilder: (_, i) {
+          final item = _settings[i];
           return Card(
-            margin: const EdgeInsets.only(bottom: 12),
+            margin: const EdgeInsets.only(bottom: 8),
+            color: isDark ? AppTheme.darkCard : AppTheme.lightCard,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             child: ListTile(
-              leading: Icon(settings[index]['icon'], color: AppTheme.goldColor),
-              title: Text(settings[index]['title'], style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
+              leading: Icon(item['icon'], color: item['color']),
+              title: Text(item['title']),
               trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-              onTap: () => Navigator.pushNamed(context, settings[index]['route']),
+              onTap: () {},
             ),
           );
         },

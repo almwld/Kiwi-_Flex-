@@ -1,321 +1,126 @@
-import '../../widgets/custom_app_bar.dart';
-import '../widgets/custom_app_bar.dart';
-import '../../widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import '../../theme/app_theme.dart';
 import '../../widgets/custom_app_bar.dart';
+import 'deposit_screen.dart';
+import 'withdraw_screen.dart';
+import 'transfer_screen.dart';
+import 'transactions_screen.dart';
 
-/// شاشة المحفظة الرئيسية
-class WalletScreen extends StatefulWidget {
+class WalletScreen extends StatelessWidget {
   const WalletScreen({super.key});
 
-  @override
-  State<WalletScreen> createState() => _WalletScreenState();
-}
-
-class _WalletScreenState extends State<WalletScreen> {
-  int _currentCardIndex = 0;
-  
-  // بيانات وهمية للرصيد
-  final List<Map<String, dynamic>> _balances = [
-    {'currency': 'YER', 'amount': 125000.0, 'symbol': 'ر.ي', 'name': 'ريال يمني'},
-    {'currency': 'SAR', 'amount': 2500.0, 'symbol': 'ر.س', 'name': 'ريال سعودي'},
-    {'currency': 'USD', 'amount': 500.0, 'symbol': '\$', 'name': 'دولار أمريكي'},
+  final List<Map<String, dynamic>> _cards = const [
+    {'currency': 'YER', 'balance': 125000, 'symbol': 'ر.ي', 'name': 'الريال اليمني', 'flag': ''},
+    {'currency': 'SAR', 'balance': 5000, 'symbol': 'ر.س', 'name': 'الريال السعودي', 'flag': ''},
+{'currency': 'YER', 'balance': 125000, 'symbol': 'ر.ي', 'name': 'الدولار', 'flag': ''},
   ];
 
-  // خدمات المحفظة
   final List<Map<String, dynamic>> _services = [
-    {'name': 'إيداع', 'icon': Icons.arrow_downward, 'route': '/deposit'},
-    {'name': 'تحويل', 'icon': Icons.swap_horiz, 'route': '/transfer'},
-    {'name': 'سحب', 'icon': Icons.arrow_upward, 'route': '/withdraw'},
-    {'name': 'فواتير', 'icon': Icons.receipt_long, 'route': '/payments'},
-    {'name': 'العمليات', 'icon': Icons.history, 'route': '/transactions'},
-    {'name': 'شبكة تحويل', 'icon': Icons.network_cell, 'route': '/transfer_network'},
-    {'name': 'ترفيه', 'icon': Icons.movie, 'route': '/entertainment'},
-    {'name': 'ألعاب', 'icon': Icons.sports_esports, 'route': '/games'},
-    {'name': 'تطبيقات', 'icon': Icons.apps, 'route': '/apps'},
-    {'name': 'بطاقات نت', 'icon': Icons.card_giftcard, 'route': '/gift_cards'},
-    {'name': 'أمازون', 'icon': Icons.shopping_cart, 'route': '/amazon_gift_cards'},
-    {'name': 'بنوك ومحافظ', 'icon': Icons.account_balance, 'route': '/banks_wallets'},
-    {'name': 'تحويلات', 'icon': Icons.send, 'route': '/money_transfers'},
-    {'name': 'مدفوعات حكومية', 'icon': Icons.account_balance_wallet, 'route': '/government_payments'},
-    {'name': 'فلكسي', 'icon': Icons.flash_on, 'route': '/jib'},
-    {'name': 'سحب نقدي', 'icon': Icons.money, 'route': '/cash_withdrawal'},
-    {'name': 'تعليم عالي', 'icon': Icons.school, 'route': '/universities'},
-    {'name': 'شحن وسداد', 'icon': Icons.phone_android, 'route': '/recharge_payment'},
-    {'name': 'شحن رصيد', 'icon': Icons.signal_cellular_alt, 'route': '/recharge_credit'},
-    {'name': 'سداد باقات', 'icon': Icons.wifi, 'route': '/pay_bundles'},
-    {'name': 'إنترنت وهاتف', 'icon': Icons.router, 'route': '/internet_landline'},
-    {'name': 'استلام حوالة', 'icon': Icons.download, 'route': '/receive_transfer'},
+    {'name': 'إيداع', 'icon': Icons.add_card, 'color': Colors.orange, 'screen': const DepositScreen()},
+    {'name': 'سحب', 'icon': Icons.atm, 'color': Colors.blue, 'screen': const WithdrawScreen()},
+    {'name': 'تحويل', 'icon': Icons.swap_horiz, 'color': Colors.green, 'screen': const TransferScreen()},
+    {'name': 'عمليات', 'icon': Icons.history, 'color': Colors.teal, 'screen': const TransactionsScreen()},
   ];
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Scaffold(
-      backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: CustomAppBar(title: 'المحفظة'),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 16),
-            // بطاقات الرصيد
-            _buildBalanceCards(),
-            const SizedBox(height: 24),
-            // مؤشرات البطاقات
-            _buildCardIndicators(),
-            const SizedBox(height: 32),
-            // عنوان الخدمات
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'الخدمات',
-                style: TextStyle(
-                  fontFamily: 'Changa',
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            // شبكة الخدمات
-            _buildServicesGrid(),
-            const SizedBox(height: 24),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildBalanceCards() {
-    return SizedBox(
-      height: 200,
-      child: PageView.builder(
-        itemCount: _balances.length,
-        onPageChanged: (index) {
-          setState(() {
-            _currentCardIndex = index;
-          });
-        },
-        itemBuilder: (context, index) {
-          final balance = _balances[index];
-          return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 16),
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(colors: [AppTheme.goldColor, AppTheme.goldLight]),
-              borderRadius: BorderRadius.circular(24),
-              boxShadow: [
-                BoxShadow(
-                  color: AppTheme.goldColor.withOpacity(0.4),
-                  blurRadius: 20,
-                  offset: const Offset(0, 10),
-                ),
-              ],
-            ),
-            child: Stack(
-              children: [
-                // نمط خلفية
-                Positioned(
-                  right: -50,
-                  top: -50,
-                  child: Container(
-                    width: 200,
-                    height: 200,
+      appBar: const CustomAppBar(title: 'المحفظة'),
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 180,
+              child: PageView.builder(
+                itemCount: _cards.length,
+                itemBuilder: (_, i) {
+                  final card = _cards[i];
+                  return Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.1),
-                      shape: BoxShape.circle,
+                      gradient: const LinearGradient(
+                        colors: [AppTheme.goldColor, AppTheme.goldLight],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      borderRadius: BorderRadius.circular(24),
                     ),
-                  ),
-                ),
-                Positioned(
-                  left: -30,
-                  bottom: -30,
-                  child: Container(
-                    width: 150,
-                    height: 150,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.05),
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                ),
-                // المحتوى
-                Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            balance['name'],
-                            style: const TextStyle(
-                              fontFamily: 'Changa',
-                              fontSize: 16,
-                              color: AppTheme.darkText,
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 6,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.3),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Text(
-                              balance['currency'],
-                              style: const TextStyle(
-                                fontFamily: 'Changa',
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: AppTheme.darkText,
+                          Row(
+                            children: [
+                              Text(card['flag'], style: const TextStyle(fontSize: 30)),
+                              const Spacer(),
+                              Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.2),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Text(card['currency'], style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
                               ),
-                            ),
+                            ],
                           ),
-                        ],
-                      ),
-                      const Spacer(),
-                      Text(
-                        'الرصيد الحالي',
-                        style: TextStyle(
-                          fontFamily: 'Changa',
-                          fontSize: 14,
-                          color: AppTheme.darkText.withOpacity(0.7),
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        '${balance['amount'].toStringAsFixed(0)} ${balance['symbol']}',
-                        style: const TextStyle(
-                          fontFamily: 'Changa',
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                          color: AppTheme.darkText,
-                        ),
-                      ),
-                      const Spacer(),
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.account_balance_wallet,
-                            color: AppTheme.darkText,
-                            size: 20,
-                          ),
-                          const SizedBox(width: 8),
+                          const Spacer(),
+                          Text(card['name'], style: const TextStyle(color: Colors.white70)),
+                          const SizedBox(height: 4),
                           Text(
-                            'Flex Yemen Wallet',
-                            style: TextStyle(
-                              fontFamily: 'Changa',
-                              fontSize: 12,
-                              color: AppTheme.darkText.withOpacity(0.7),
-                            ),
+                            '${card['balance']} ${card['symbol']}',
+                            style: const TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                ),
-              ],
+                    ),
+                  );
+                },
+              ),
             ),
-          ).animate().fadeIn().scale(delay: const Duration(milliseconds: 200));
-        },
-      ),
-    );
-  }
-
-  Widget _buildCardIndicators() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: _balances.asMap().entries.map((entry) {
-        return Container(
-          width: _currentCardIndex == entry.key ? 24 : 8,
-          height: 8,
-          margin: const EdgeInsets.symmetric(horizontal: 4),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
-            color: _currentCardIndex == entry.key
-                ? AppTheme.goldColor
-                : Colors.grey.withOpacity(0.3),
           ),
-        );
-      }).toList(),
-    );
-  }
-
-  Widget _buildServicesGrid() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          childAspectRatio: 0.85,
-          crossAxisSpacing: 12,
-          mainAxisSpacing: 12,
-        ),
-        itemCount: _services.length,
-        itemBuilder: (context, index) {
-          final service = _services[index];
-          return GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, service['route']);
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
+          SliverPadding(
+            padding: const EdgeInsets.all(16),
+            sliver: SliverGrid(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                childAspectRatio: 1,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: AppTheme.goldColor.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(12),
+              delegate: SliverChildBuilderDelegate(
+                (_, i) {
+                  final s = _services[i];
+                  return GestureDetector(
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => s['screen'])),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: isDark ? AppTheme.darkCard : AppTheme.lightCard,
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: (s['color'] as Color).withOpacity(0.2),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(s['icon'], color: s['color'], size: 28),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(s['name'], style: const TextStyle(fontSize: 11)),
+                        ],
+                      ),
                     ),
-                    child: Icon(
-                      service['icon'],
-                      color: AppTheme.goldColor,
-                      size: 24,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    service['name'],
-                    style: TextStyle(
-                      fontFamily: 'Changa',
-                      fontSize: 12,
-                      color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+                  );
+                },
+                childCount: _services.length,
               ),
             ),
-          ).animate().fadeIn(
-            delay: Duration(milliseconds: index * 30),
-          ).scale(
-            delay: Duration(milliseconds: index * 30),
-          );
-        },
+          ),
+        ],
       ),
     );
   }
