@@ -15,36 +15,13 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Create fresh Flutter project
-        run: |
-          # إنشاء مشروع جديد
-          mkdir -p /tmp/new_project
-          cd /tmp/new_project
-          flutter create --org com.flexyemen --project-name flex_temp .
-          
-          # نسخ الملفات المهمة من المشروع القديم إلى الجديد
-          cd $GITHUB_WORKSPACE
-          cp -r lib /tmp/new_project/
-          cp -r assets /tmp/new_project/ 2>/dev/null || true
-          cp pubspec.yaml /tmp/new_project/
-          cp .env /tmp/new_project/ 2>/dev/null || true
-          
-          # استبدال المجلد القديم بالجديد
-          rm -rf lib assets pubspec.yaml .env
-          cp -r /tmp/new_project/* .
-          rm -rf /tmp/new_project
-
-      - name: Fix Android manifest
-        run: |
-          sed -i 's/android:label="flex_temp"/android:label="Flex Yemen Market"/g' android/app/src/main/AndroidManifest.xml
-
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Build APK
-        run: flutter build apk --release
+      - name: Build APK (split-per-abi)
+        run: flutter build apk --release --split-per-abi
 
-      - name: Upload APK
+      - name: Upload APKs
         uses: actions/upload-artifact@v4
         with:
           name: app-release
