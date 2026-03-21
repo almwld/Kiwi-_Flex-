@@ -26,13 +26,19 @@ jobs:
           cp -r /tmp/fresh_project/android .
           cp -r /tmp/fresh_project/ios .
           rm -rf /tmp/fresh_project
+          echo "✅ Android project created"
 
       - name: Fix minSdkVersion
         run: |
-          # تغيير minSdkVersion من 21 إلى 23
-          sed -i 's/minSdkVersion 21/minSdkVersion 23/g' android/app/build.gradle
-          # إضافة compileSdkVersion 34 إذا لم تكن موجودة
-          grep -q "compileSdkVersion 34" android/app/build.gradle || sed -i '/android {/a \    compileSdkVersion 34' android/app/build.gradle
+          # التحقق من وجود الملف قبل التعديل
+          if [ -f android/app/build.gradle ]; then
+            sed -i 's/minSdkVersion [0-9]*/minSdkVersion 23/g' android/app/build.gradle
+            echo "✅ minSdkVersion updated to 23"
+          else
+            echo "❌ android/app/build.gradle not found!"
+            ls -la android/app/ || true
+            exit 1
+          fi
 
       - name: Set app name
         run: |
