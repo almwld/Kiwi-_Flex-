@@ -16,39 +16,16 @@ jobs:
           channel: 'stable'
           cache: false
 
-      - name: Create fresh Android project
+      - name: Clean and get dependencies
         run: |
-          mkdir -p /tmp/fresh_project
-          cd /tmp/fresh_project
-          flutter create --org com.flexyemen --project-name flex_temp .
-          cd $GITHUB_WORKSPACE
-          rm -rf android ios
-          cp -r /tmp/fresh_project/android .
-          cp -r /tmp/fresh_project/ios .
-          rm -rf /tmp/fresh_project
-          echo "✅ Android project created"
+          flutter clean
+          flutter pub get
 
-      - name: Fix minSdkVersion
-        run: |
-          # التحقق من وجود الملف قبل التعديل
-          if [ -f android/app/build.gradle ]; then
-            sed -i 's/minSdkVersion [0-9]*/minSdkVersion 23/g' android/app/build.gradle
-            echo "✅ minSdkVersion updated to 23"
-          else
-            echo "❌ android/app/build.gradle not found!"
-            ls -la android/app/ || true
-            exit 1
-          fi
+      - name: Analyze code (to see errors)
+        run: flutter analyze || true
 
-      - name: Set app name
-        run: |
-          sed -i 's/android:label="flex_temp"/android:label="Flex Yemen Market"/g' android/app/src/main/AndroidManifest.xml
-
-      - name: Get dependencies
-        run: flutter pub get
-
-      - name: Build APK
-        run: flutter build apk --release --split-per-abi
+      - name: Build APK with verbose output
+        run: flutter build apk --release --split-per-abi --verbose
 
       - name: Upload APKs
         uses: actions/upload-artifact@v4
