@@ -101,14 +101,9 @@ class ProductModel {
       default: return 'ر.ي';
     }
   }
-}
-
-  bool get hasDiscount => discountPercentage != null && discountPercentage! > 0;
-  int get discountPercent => discountPercentage ?? 0;
-  bool get isAuction => false; // مؤقتاً، يمكن تعديله لاحقاً
-  String get city => 'صنعاء'; // مؤقتاً، يمكن تعديله لاحقاً
 
   bool get hasDiscount => discountPercentage != null && discountPercentage! > 0;
   int get discountPercent => discountPercentage ?? 0;
   bool get isAuction => false;
   String get city => 'صنعاء';
+}
