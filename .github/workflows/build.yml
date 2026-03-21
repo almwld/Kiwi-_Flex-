@@ -29,30 +29,29 @@ jobs:
 
       - name: Fix Gradle configuration
         run: |
-          # إضافة إعدادات compileSdkVersion إلى build.gradle
           cat >> android/build.gradle << 'GRADLE_EOF'
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-subprojects {
-    afterEvaluate { project ->
-        if (project.hasProperty('android')) {
-            project.android {
-                compileSdkVersion 34
-                if (it.hasProperty('defaultConfig')) {
-                    it.defaultConfig {
-                        minSdkVersion 21
-                    }
-                }
-            }
-        }
-    }
-}
-GRADLE_EOF
+          allprojects {
+              repositories {
+                  google()
+                  mavenCentral()
+              }
+          }
+          
+          subprojects {
+              afterEvaluate { project ->
+                  if (project.hasProperty('android')) {
+                      project.android {
+                          compileSdkVersion 34
+                          if (it.hasProperty('defaultConfig')) {
+                              it.defaultConfig {
+                                  minSdkVersion 21
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+          GRADLE_EOF
 
       - name: Set app name
         run: |
