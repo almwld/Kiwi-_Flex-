@@ -1,87 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import '../models/product_model.dart';
 import '../theme/app_theme.dart';
 import '../widgets/custom_app_bar.dart';
-import '../widgets/ad_card.dart';
 import '../widgets/loading_widget.dart';
+import '../models/product_model.dart';
+import 'all_ads_screen.dart';
+import 'product_detail_screen.dart';
 
-/// الصفحة الرئيسية
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  @override State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentSlide = 0;
   bool _isLoading = true;
   List<ProductModel> _featuredProducts = [];
-  List<ProductModel> _auctionProducts = [];
   List<ProductModel> _newProducts = [];
 
-  // بيانات وهمية للسلايدر
   final List<Map<String, dynamic>> _slides = [
-    {
-      'title': 'إعلانات حصرية للتجار',
-      'subtitle': 'انضم إلينا وقم بعرض منتجاتك',
-      'color': const Color(0xFF6C63FF),
-      'icon': Icons.store,
-    },
-    {
-      'title': 'VIP عروض',
-      'subtitle': 'خصومات حصرية تصل إلى 50%',
-      'color': const Color(0xFFFF6B6B),
-      'icon': Icons.local_offer,
-    },
-    {
-      'title': 'عروض أفضل المطاعم',
-      'subtitle': 'اكتشف أشهى الأطباق',
-      'color': const Color(0xFF4ECDC4),
-      'icon': Icons.restaurant,
-    },
-    {
-      'title': 'مزادات السيارات والعقارات',
-      'subtitle': 'فرص استثمارية فريدة',
-      'color': const Color(0xFFFFE66D),
-      'icon': Icons.gavel,
-    },
-    {
-      'title': 'إعلانات المنصة',
-      'subtitle': 'تابع أحدث الأخبار والتحديثات',
-      'color': const Color(0xFF95E1D3),
-      'icon': Icons.campaign,
-    },
-  ];
-
-  // بيانات "مزيد من ما تريد"
-  final List<Map<String, dynamic>> _quickCategories = [
-    {'name': 'معلمات', 'icon': Icons.school, 'color': const Color(0xFF6C63FF)},
-    {'name': 'عقارات', 'icon': Icons.apartment, 'color': const Color(0xFF4ECDC4)},
-    {'name': 'سفر', 'icon': Icons.flight, 'color': const Color(0xFFFF6B6B)},
-    {'name': 'شحن', 'icon': Icons.local_shipping, 'color': const Color(0xFFFFE66D)},
-    {'name': 'ألعاب', 'icon': Icons.sports_esports, 'color': const Color(0xFF95E1D3)},
-  ];
-
-  // بيانات العقارات والاستثمارات
-  final List<Map<String, dynamic>> _realEstateCategories = [
-    {'name': 'شقق الإيجار', 'icon': Icons.apartment, 'color': const Color(0xFF3498DB)},
-    {'name': 'فلل البيع', 'icon': Icons.villa, 'color': const Color(0xFF2ECC71)},
-    {'name': 'أراضي', 'icon': Icons.terrain, 'color': const Color(0xFFE67E22)},
-    {'name': 'مكافآت', 'icon': Icons.card_giftcard, 'color': const Color(0xFF9B59B6)},
-    {'name': 'محطات', 'icon': Icons.local_gas_station, 'color': const Color(0xFF1ABC9C)},
-    {'name': 'مقاولات', 'icon': Icons.construction, 'color': const Color(0xFFE74C3C)},
-    {'name': 'ديكور', 'icon': Icons.design_services, 'color': const Color(0xFF34495E)},
-  ];
-
-  // بيانات الإلكترونيات
-  final List<Map<String, dynamic>> _techCategories = [
-    {'name': 'هواتف ذكية', 'icon': Icons.smartphone, 'color': const Color(0xFF9B59B6)},
-    {'name': 'لابتوب', 'icon': Icons.laptop, 'color': const Color(0xFF3498DB)},
-    {'name': 'ستارلينك', 'icon': Icons.wifi, 'color': const Color(0xFF2ECC71)},
-    {'name': 'كاميرات', 'icon': Icons.camera_alt, 'color': const Color(0xFFE74C3C)},
+    {'title': 'عرض خاص', 'subtitle': 'خصومات تصل إلى 50%', 'image': 'https://picsum.photos/id/1/400/200'},
+    {'title': 'VIP عروض', 'subtitle': 'لعملائنا الكرام', 'image': 'https://picsum.photos/id/2/400/200'},
+    {'title': 'أفضل المطاعم', 'subtitle': 'اكتشف أشهى الأطباق', 'image': 'https://picsum.photos/id/3/400/200'},
   ];
 
   @override
@@ -91,12 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _loadData() async {
-    // محاكاة تحميل البيانات
     await Future.delayed(const Duration(seconds: 1));
-    
     setState(() {
       _featuredProducts = _getDummyProducts();
-      _auctionProducts = _getDummyAuctionProducts();
       _newProducts = _getDummyProducts().take(4).toList();
       _isLoading = false;
     });
@@ -104,135 +41,74 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<ProductModel> _getDummyProducts() {
     return [
-      ProductModel(subCategory: "", sellerRating: 4.5, 
+      ProductModel(
         id: '1',
-        title: 'آيفون 15 برو ماكس 256GB',
-        description: 'هاتف أيفون جديد بالكامل مع ضمان سنة',
+        title: 'آيفون 15 برو ماكس',
+        description: 'هاتف أيفون جديد بالكامل',
         price: 450000,
         oldPrice: 500000,
         currency: 'YER',
-        images: ['https://via.placeholder.com/300x200/6C63FF/FFFFFF?text=iPhone+15'],
+        images: ['https://picsum.photos/id/1/300/200'],
         category: 'إلكترونيات',
+        subCategory: 'هواتف',
         sellerId: 'seller1',
         sellerName: 'متجر التقنية',
+        sellerRating: 4.8,
+        inStock: true,
         rating: 4.8,
         reviewCount: 120,
         createdAt: DateTime.now(),
       ),
-      ProductModel(subCategory: "", sellerRating: 4.5, 
+      ProductModel(
         id: '2',
-        title: 'لابتوب Dell XPS 15',
-        description: 'لابتوب احترافي للأعمال والتصميم',
+        title: 'لابتوب Dell XPS',
+        description: 'لابتوب احترافي',
         price: 380000,
         currency: 'YER',
-        images: ['https://via.placeholder.com/300x200/4ECDC4/FFFFFF?text=Dell+XPS'],
+        images: ['https://picsum.photos/id/2/300/200'],
         category: 'إلكترونيات',
+        subCategory: 'لابتوب',
         sellerId: 'seller2',
         sellerName: 'الحاسوب المتقدم',
+        sellerRating: 4.5,
+        inStock: true,
         rating: 4.5,
         reviewCount: 85,
         createdAt: DateTime.now(),
       ),
-      ProductModel(subCategory: "", sellerRating: 4.5, 
+      ProductModel(
         id: '3',
-        title: 'سيارة تويوتا كامري 2020',
-        description: 'سيارة نظيفة جداً، ممشى قليل',
+        title: 'سيارة تويوتا كامري',
+        description: 'سيارة نظيفة جداً',
         price: 8500000,
         currency: 'YER',
-        images: ['https://via.placeholder.com/300x200/FF6B6B/FFFFFF?text=Toyota'],
+        images: ['https://picsum.photos/id/3/300/200'],
         category: 'سيارات',
+        subCategory: 'سيارات للبيع',
         sellerId: 'seller3',
         sellerName: 'معرض السيارات',
+        sellerRating: 4.9,
+        inStock: true,
         rating: 4.9,
         reviewCount: 45,
         createdAt: DateTime.now(),
       ),
-      ProductModel(subCategory: "", sellerRating: 4.5, 
+      ProductModel(
         id: '4',
         title: 'شقة فاخرة للإيجار',
-        description: '3 غرف، 2 حمام، صالة كبيرة',
+        description: '3 غرف، 2 حمام',
         price: 80000,
         currency: 'YER',
-        images: ['https://via.placeholder.com/300x200/FFE66D/333333?text=Apartment'],
+        images: ['https://picsum.photos/id/4/300/200'],
         category: 'عقارات',
+        subCategory: 'شقق للإيجار',
         sellerId: 'seller4',
         sellerName: 'العقارات الذهبية',
+        sellerRating: 4.6,
+        inStock: true,
         rating: 4.6,
         reviewCount: 30,
         createdAt: DateTime.now(),
-      ),
-    ];
-  }
-
-  List<ProductModel> _getDummyAuctionProducts() {
-    return [
-      ProductModel(subCategory: "", sellerRating: 4.5, 
-        id: 'a1',
-        title: 'جندية صيفاني قديمة',
-        description: 'جندية أثرية نادرة',
-        price: 150000,
-        currency: 'YER',
-        images: ['https://via.placeholder.com/300x200/D4AF37/FFFFFF?text=Dagger'],
-        category: 'تحف',
-        sellerId: 'seller5',
-        sellerName: 'صاحب التحف',
-        rating: 5.0,
-        reviewCount: 15,
-        createdAt: DateTime.now(),
-        auctionEndTime: DateTime.now().add(const Duration(days: 2)),
-        currentBid: 150000,
-        bidCount: 8,
-      ),
-      ProductModel(subCategory: "", sellerRating: 4.5, 
-        id: 'a2',
-        title: 'ساعة رولكس أصلية',
-        description: 'ساعة فاخرة بحالة ممتازة',
-        price: 2500000,
-        currency: 'YER',
-        images: ['https://via.placeholder.com/300x200/FFD700/333333?text=Rolex'],
-        category: 'ساعات',
-        sellerId: 'seller6',
-        sellerName: 'الساعات الفاخرة',
-        rating: 4.9,
-        reviewCount: 50,
-        createdAt: DateTime.now(),
-        auctionEndTime: DateTime.now().add(const Duration(hours: 12)),
-        currentBid: 2500000,
-        bidCount: 23,
-      ),
-      ProductModel(subCategory: "", sellerRating: 4.5, 
-        id: 'a3',
-        title: 'سجادة يدوية فارسية',
-        description: 'سجادة صوف يدوية الصنع',
-        price: 450000,
-        currency: 'YER',
-        images: ['https://via.placeholder.com/300x200/8B4513/FFFFFF?text=Carpet'],
-        category: 'سجاد',
-        sellerId: 'seller7',
-        sellerName: 'سجاد الشرق',
-        rating: 4.7,
-        reviewCount: 22,
-        createdAt: DateTime.now(),
-        auctionEndTime: DateTime.now().add(const Duration(days: 3)),
-        currentBid: 450000,
-        bidCount: 5,
-      ),
-      ProductModel(subCategory: "", sellerRating: 4.5, 
-        id: 'a4',
-        title: 'لوحة فنية نادرة',
-        description: 'لوحة زيت أصلية للفنان...',
-        price: 1200000,
-        currency: 'YER',
-        images: ['https://via.placeholder.com/300x200/FF6347/FFFFFF?text=Painting'],
-        category: 'فنون',
-        sellerId: 'seller8',
-        sellerName: 'معرض الفنون',
-        rating: 5.0,
-        reviewCount: 10,
-        createdAt: DateTime.now(),
-        auctionEndTime: DateTime.now().add(const Duration(days: 1)),
-        currentBid: 1200000,
-        bidCount: 12,
       ),
     ];
   }
@@ -243,34 +119,19 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: CustomAppBar(showLogo: true),
+      appBar: const CustomAppBar(),
       body: _isLoading
           ? const LoadingWidget(message: 'جاري التحميل...')
           : RefreshIndicator(
               onRefresh: _loadData,
               child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // السلايدر
                     _buildCarousel(),
                     const SizedBox(height: 24),
-                    // مزيد من ما تريد
-                    _buildQuickCategories(),
-                    const SizedBox(height: 24),
-                    // مزاد الجنابي
-                    _buildAuctionSection(),
-                    const SizedBox(height: 24),
-                    // العقارات والاستثمارات
-                    _buildRealEstateSection(),
-                    const SizedBox(height: 24),
-                    // الإلكترونيات والتقنية
-                    _buildTechSection(),
-                    const SizedBox(height: 24),
-                    // المنتجات المميزة
                     _buildFeaturedProducts(),
                     const SizedBox(height: 24),
+                    _buildNewProducts(),
                   ],
                 ),
               ),
@@ -287,76 +148,41 @@ class _HomeScreenState extends State<HomeScreen> {
             autoPlay: true,
             enlargeCenterPage: true,
             viewportFraction: 0.9,
-            onPageChanged: (index, reason) {
-              setState(() {
-                _currentSlide = index;
-              });
-            },
+            onPageChanged: (index, _) => setState(() => _currentSlide = index),
           ),
           items: _slides.map((slide) {
-            return Builder(
-              builder: (BuildContext context) {
-                return Container(
-                  width: MediaQuery.of(context).size.width,
-                  margin: const EdgeInsets.symmetric(horizontal: 5),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        slide['color'],
-                        slide['color'].withOpacity(0.7),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    borderRadius: BorderRadius.circular(20),
+            return Container(
+              margin: const EdgeInsets.symmetric(horizontal: 5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                image: DecorationImage(image: NetworkImage(slide['image']), fit: BoxFit.cover),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
                   ),
-                  child: Stack(
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Positioned(
-                        right: -20,
-                        bottom: -20,
-                        child: Icon(
-                          slide['icon'],
-                          size: 150,
-                          color: Colors.white.withOpacity(0.1),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              slide['title'],
-                              style: const TextStyle(
-                                fontFamily: 'Changa',
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              slide['subtitle'],
-                              style: TextStyle(
-                                fontFamily: 'Changa',
-                                fontSize: 14,
-                                color: Colors.white.withOpacity(0.9),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      Text(slide['title'], style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 4),
+                      Text(slide['subtitle'], style: const TextStyle(color: Colors.white70, fontSize: 16)),
                     ],
                   ),
-                );
-              },
+                ),
+              ),
             );
           }).toList(),
         ),
         const SizedBox(height: 16),
-        // مؤشرات السلايدر
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: _slides.asMap().entries.map((entry) {
@@ -366,324 +192,13 @@ class _HomeScreenState extends State<HomeScreen> {
               margin: const EdgeInsets.symmetric(horizontal: 4),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
-                color: _currentSlide == entry.key
-                    ? AppTheme.goldColor
-                    : Colors.grey.withOpacity(0.3),
+                color: _currentSlide == entry.key ? AppTheme.goldColor : Colors.grey.withOpacity(0.3),
               ),
             );
           }).toList(),
         ),
       ],
-    ).animate().fadeIn().slideY(begin: 0.2);
-  }
-
-  Widget _buildQuickCategories() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'مزيد من ما تريد',
-                style: TextStyle(
-                  fontFamily: 'Changa',
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/categories');
-                },
-                child: const Text(
-                  'المزيد',
-                  style: TextStyle(
-                    fontFamily: 'Changa',
-                    color: AppTheme.goldColor,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 12),
-        SizedBox(
-          height: 100,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            itemCount: _quickCategories.length,
-            itemBuilder: (context, index) {
-              final category = _quickCategories[index];
-              return GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/all_ads');
-                },
-                child: Container(
-                  width: 80,
-                  margin: const EdgeInsets.only(left: 12),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: 60,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          color: category['color'].withOpacity(0.1),
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(
-                          category['icon'],
-                          color: category['color'],
-                          size: 28,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        category['name'],
-                        style: TextStyle(
-                          fontFamily: 'Changa',
-                          fontSize: 12,
-                          color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
-        ),
-      ],
-    ).animate().fadeIn(delay: const Duration(milliseconds: 200));
-  }
-
-  Widget _buildAuctionSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'مزاد الجنابي الأسبوعي',
-                style: TextStyle(
-                  fontFamily: 'Changa',
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/auctions');
-                },
-                child: const Text(
-                  'المزيد',
-                  style: TextStyle(
-                    fontFamily: 'Changa',
-                    color: AppTheme.goldColor,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 12),
-        GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.75,
-            crossAxisSpacing: 12,
-            mainAxisSpacing: 12,
-          ),
-          itemCount: _auctionProducts.length,
-          itemBuilder: (context, index) {
-            return AdCard(
-              product: _auctionProducts[index],
-              onTap: () {
-                Navigator.pushNamed(context, '/ad_detail');
-              },
-            );
-          },
-        ),
-      ],
-    ).animate().fadeIn(delay: const Duration(milliseconds: 300));
-  }
-
-  Widget _buildRealEstateSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'العقارات والاستثمارات',
-                style: TextStyle(
-                  fontFamily: 'Changa',
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/categories');
-                },
-                child: const Text(
-                  'المزيد',
-                  style: TextStyle(
-                    fontFamily: 'Changa',
-                    color: AppTheme.goldColor,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 12),
-        SizedBox(
-          height: 110,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            itemCount: _realEstateCategories.length,
-            itemBuilder: (context, index) {
-              final category = _realEstateCategories[index];
-              return GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/all_ads');
-                },
-                child: Container(
-                  width: 90,
-                  margin: const EdgeInsets.only(left: 12),
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: category['color'].withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        category['icon'],
-                        color: category['color'],
-                        size: 32,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        category['name'],
-                        style: TextStyle(
-                          fontFamily: 'Changa',
-                          fontSize: 11,
-                          color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
-        ),
-      ],
-    ).animate().fadeIn(delay: const Duration(milliseconds: 400));
-  }
-
-  Widget _buildTechSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'عالم الإلكترونيات والتقنية',
-                style: TextStyle(
-                  fontFamily: 'Changa',
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/categories');
-                },
-                child: const Text(
-                  'المزيد',
-                  style: TextStyle(
-                    fontFamily: 'Changa',
-                    color: AppTheme.goldColor,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 12),
-        SizedBox(
-          height: 110,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            itemCount: _techCategories.length,
-            itemBuilder: (context, index) {
-              final category = _techCategories[index];
-              return GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/all_ads');
-                },
-                child: Container(
-                  width: 90,
-                  margin: const EdgeInsets.only(left: 12),
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: category['color'].withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        category['icon'],
-                        color: category['color'],
-                        size: 32,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        category['name'],
-                        style: TextStyle(
-                          fontFamily: 'Changa',
-                          fontSize: 11,
-                          color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
-        ),
-      ],
-    ).animate().fadeIn(delay: const Duration(milliseconds: 500));
+    );
   }
 
   Widget _buildFeaturedProducts() {
@@ -695,27 +210,63 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'منتجات مميزة',
-                style: TextStyle(
-                  fontFamily: 'Changa',
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/all_ads');
-                },
-                child: const Text(
-                  'المزيد',
-                  style: TextStyle(
-                    fontFamily: 'Changa',
-                    color: AppTheme.goldColor,
+              Text('منتجات مميزة', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
+              TextButton(onPressed: () => Navigator.pushNamed(context, '/all_ads'), child: const Text('المزيد', style: TextStyle(color: AppTheme.goldColor))),
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
+        SizedBox(
+          height: 220,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            itemCount: _featuredProducts.length,
+            itemBuilder: (context, index) {
+              final product = _featuredProducts[index];
+              return GestureDetector(
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => ProductDetailScreen(product: product))),
+                child: Container(
+                  width: 150,
+                  margin: const EdgeInsets.only(right: 12),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+                          child: Image.network(product.images.first, fit: BoxFit.cover, width: double.infinity),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Text(product.title, maxLines: 1, overflow: TextOverflow.ellipsis),
+                      ),
+                    ],
                   ),
                 ),
-              ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildNewProducts() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('أحدث المنتجات', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
+              TextButton(onPressed: () => Navigator.pushNamed(context, '/all_ads'), child: const Text('المزيد', style: TextStyle(color: AppTheme.goldColor))),
             ],
           ),
         ),
@@ -732,15 +283,33 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           itemCount: _newProducts.length,
           itemBuilder: (context, index) {
-            return AdCard(
-              product: _newProducts[index],
-              onTap: () {
-                Navigator.pushNamed(context, '/ad_detail');
-              },
+            final product = _newProducts[index];
+            return GestureDetector(
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => ProductDetailScreen(product: product))),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+                        child: Image.network(product.images.first, fit: BoxFit.cover, width: double.infinity),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Text(product.title, maxLines: 2, overflow: TextOverflow.ellipsis),
+                    ),
+                  ],
+                ),
+              ),
             );
           },
         ),
       ],
-    ).animate().fadeIn(delay: const Duration(milliseconds: 600));
+    );
   }
 }
