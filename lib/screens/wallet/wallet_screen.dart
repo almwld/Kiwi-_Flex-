@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../theme/app_theme.dart';
 import '../../widgets/custom_app_bar.dart';
 import 'deposit_screen.dart';
 import 'withdraw_screen.dart';
@@ -11,7 +12,7 @@ class WalletScreen extends StatelessWidget {
   final List<Map<String, dynamic>> _cards = const [
     {'currency': 'YER', 'balance': 125000, 'symbol': 'ر.ي', 'name': 'الريال اليمني', 'flag': ''},
     {'currency': 'SAR', 'balance': 5000, 'symbol': 'ر.س', 'name': 'الريال السعودي', 'flag': ''},
-{'currency': 'YER', 'balance': 125000, 'symbol': 'ر.ي', 'name': 'الدولار', 'flag': ''},
+{'currency': 'USD', 'balance': 200, 'symbol': '$', 'name': 'الدولار الأمريكي', 'flag': '🇺🇸'},
   ];
 
   final List<Map<String, dynamic>> _services = [
