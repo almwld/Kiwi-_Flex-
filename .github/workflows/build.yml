@@ -11,13 +11,39 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      - run: flutter pub get
-      # إزالة flutter analyze (أو جعلها اختيارية)
-      # - run: flutter analyze --no-fatal-infos --no-fatal-warnings
-      - run: flutter build apk --release
+          flutter-version: '3.24.0'
+
+      - name: Create fresh Flutter project
+        run: |
+          mkdir -p /tmp/fresh_project
+          cd /tmp/fresh_project
+          flutter create --org com.flexyemen --project-name flex_temp .
+          cd $GITHUB_WORKSPACE
+          # احتفظ بمجلدات lib, assets, pubspec.yaml, .env, إلخ
+          # احذف android, ios, windows, macos, linux, web إن وجدت
+          rm -rf android ios windows macos linux web
+          cp -r /tmp/fresh_project/android .
+          cp -r /tmp/fresh_project/ios .
+          cp -r /tmp/fresh_project/windows . 2>/dev/null || true
+          cp -r /tmp/fresh_project/macos . 2>/dev/null || true
+          cp -r /tmp/fresh_project/linux . 2>/dev/null || true
+          cp -r /tmp/fresh_project/web . 2>/dev/null || true
+          rm -rf /tmp/fresh_project
+
+      - name: Set app name
+        run: |
+          sed -i 's/android:label="flex_temp"/android:label="Flex Yemen Market"/g' android/app/src/main/AndroidManifest.xml
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        run: flutter build apk --release --split-per-abi
+
       - uses: actions/upload-artifact@v4
         with:
           name: app-release
