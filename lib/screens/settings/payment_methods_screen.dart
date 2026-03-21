@@ -10,14 +10,14 @@ class PaymentMethodsScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'طرق الدفع'),
+      appBar: const CustomAppBar(title: 'طرق الدفع'),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           Card(
             child: ListTile(
               leading: const Icon(Icons.account_balance_wallet, color: AppTheme.goldColor),
-              title: Text('المحفظة الإلكترونية', style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
+              title: Text('المحفظة الإلكترونية', style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
               subtitle: const Text('الرصيد: 125,000 ر.ي', style: TextStyle(fontFamily: 'Changa')),
             ),
           ),
@@ -25,7 +25,7 @@ class PaymentMethodsScreen extends StatelessWidget {
           Card(
             child: ListTile(
               leading: const Icon(Icons.credit_card, color: AppTheme.goldColor),
-              title: Text('بطاقة ائتمانية', style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
+              title: Text('بطاقة ائتمانية', style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
               subtitle: const Text('**** **** **** 1234', style: TextStyle(fontFamily: 'Changa')),
               trailing: TextButton(
                 onPressed: () {},

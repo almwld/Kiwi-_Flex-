@@ -48,7 +48,7 @@ class EmptyState extends StatelessWidget {
                 fontFamily: 'Changa',
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
-                color: AppTheme.getTextColor(context),
+                color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
               ),
             ),
             if (subtitle != null) ...[
@@ -59,7 +59,7 @@ class EmptyState extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: 'Changa',
                   fontSize: 14,
-                  color: AppTheme.getSecondaryTextColor(context),
+                  color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary,
                 ),
               ),
             ],

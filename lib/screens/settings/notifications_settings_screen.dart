@@ -20,7 +20,7 @@ class _NotificationsSettingsScreenState extends State<NotificationsSettingsScree
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'إعدادات الإشعارات'),
+      appBar: const CustomAppBar(title: 'إعدادات الإشعارات'),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [

@@ -34,7 +34,7 @@ class _TransferScreenState extends State<TransferScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'تحويل'),
+      appBar: const CustomAppBar(title: 'تحويل'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -43,7 +43,7 @@ class _TransferScreenState extends State<TransferScreen> {
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(gradient: AppTheme.goldGradient, borderRadius: BorderRadius.circular(20)),
+              decoration: BoxDecoration(gradient: const LinearGradient(colors: [AppTheme.goldColor, AppTheme.goldLight]), borderRadius: BorderRadius.circular(20)),
               child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -54,7 +54,7 @@ class _TransferScreenState extends State<TransferScreen> {
               ),
             ),
             const SizedBox(height: 32),
-            Text('رقم المستلم', style: TextStyle(fontFamily: 'Changa', fontSize: 16, fontWeight: FontWeight.w600, color: AppTheme.getTextColor(context))),
+            Text('رقم المستلم', style: TextStyle(fontFamily: 'Changa', fontSize: 16, fontWeight: FontWeight.w600, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
             const SizedBox(height: 12),
             TextField(
               controller: _recipientController,
@@ -64,13 +64,13 @@ class _TransferScreenState extends State<TransferScreen> {
               decoration: InputDecoration(
                 hintText: 'أدخل رقم الهاتف أو رقم الحساب',
                 filled: true,
-                fillColor: AppTheme.getCardColor(context),
+                fillColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
                 prefixIcon: const Icon(Icons.person_outline),
               ),
             ),
             const SizedBox(height: 24),
-            Text('المبلغ', style: TextStyle(fontFamily: 'Changa', fontSize: 16, fontWeight: FontWeight.w600, color: AppTheme.getTextColor(context))),
+            Text('المبلغ', style: TextStyle(fontFamily: 'Changa', fontSize: 16, fontWeight: FontWeight.w600, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
             const SizedBox(height: 12),
             TextField(
               controller: _amountController,
@@ -80,7 +80,7 @@ class _TransferScreenState extends State<TransferScreen> {
               decoration: InputDecoration(
                 hintText: 'أدخل المبلغ',
                 filled: true,
-                fillColor: AppTheme.getCardColor(context),
+                fillColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
               ),
             ),

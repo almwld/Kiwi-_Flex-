@@ -10,16 +10,16 @@ class TransferNetworkScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'شبكة التحويل'),
+      appBar: const CustomAppBar(title: 'شبكة التحويل'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.network_check, size: 80, color: AppTheme.goldColor.withOpacity(0.5)),
             const SizedBox(height: 16),
-            Text('شبكة التحويل', style: TextStyle(fontFamily: 'Changa', fontSize: 24, color: AppTheme.getTextColor(context))),
+            Text('شبكة التحويل', style: TextStyle(fontFamily: 'Changa', fontSize: 24, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
             const SizedBox(height: 8),
-            Text('قريباً', style: TextStyle(fontFamily: 'Changa', fontSize: 16, color: AppTheme.getSecondaryTextColor(context))),
+            Text('قريباً', style: TextStyle(fontFamily: 'Changa', fontSize: 16, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary)),
           ],
         ),
       ),

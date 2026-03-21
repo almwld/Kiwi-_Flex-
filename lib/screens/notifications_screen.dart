@@ -12,7 +12,7 @@ class NotificationsScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'الإشعارات'),
+      appBar: const CustomAppBar(title: 'الإشعارات'),
       body: hasNotifications
           ? ListView.builder(
               padding: const EdgeInsets.all(16),
@@ -21,9 +21,9 @@ class NotificationsScreen extends StatelessWidget {
                 margin: const EdgeInsets.only(bottom: 12),
                 child: ListTile(
                   leading: const CircleAvatar(backgroundColor: AppTheme.goldColor, child: Icon(Icons.notifications, color: Colors.white)),
-                  title: Text('إشعار ${index + 1}', style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
+                  title: Text('إشعار ${index + 1}', style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
                   subtitle: const Text('تفاصيل الإشعار', style: TextStyle(fontFamily: 'Changa')),
-                  trailing: Text('منذ ${index + 1} ساعة', style: TextStyle(fontFamily: 'Changa', fontSize: 12, color: AppTheme.getSecondaryTextColor(context))),
+                  trailing: Text('منذ ${index + 1} ساعة', style: TextStyle(fontFamily: 'Changa', fontSize: 12, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary)),
                 ),
               ),
             )

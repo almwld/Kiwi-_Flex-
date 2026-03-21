@@ -12,7 +12,7 @@ class FavoritesScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'المفضلة'),
+      appBar: const CustomAppBar(title: 'المفضلة'),
       body: hasFavorites
           ? ListView.builder(
               padding: const EdgeInsets.all(16),
@@ -26,7 +26,7 @@ class FavoritesScreen extends StatelessWidget {
                     decoration: BoxDecoration(color: AppTheme.goldColor.withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
                     child: const Icon(Icons.favorite, color: AppTheme.goldColor),
                   ),
-                  title: Text('منتج ${index + 1}', style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
+                  title: Text('منتج ${index + 1}', style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
                   subtitle: Text('${(index + 1) * 10000} ر.ي', style: const TextStyle(fontFamily: 'Changa', color: AppTheme.goldColor)),
                   trailing: IconButton(
                     icon: const Icon(Icons.delete_outline, color: AppTheme.error),

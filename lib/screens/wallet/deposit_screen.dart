@@ -60,7 +60,7 @@ class _DepositScreenState extends State<DepositScreen> {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'إيداع'),
+      appBar: const CustomAppBar(title: 'إيداع'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -71,7 +71,7 @@ class _DepositScreenState extends State<DepositScreen> {
               width: double.infinity,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                gradient: AppTheme.goldGradient,
+                gradient: const LinearGradient(colors: [AppTheme.goldColor, AppTheme.goldLight]),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Column(
@@ -106,7 +106,7 @@ class _DepositScreenState extends State<DepositScreen> {
                 fontFamily: 'Changa',
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: AppTheme.getTextColor(context),
+                color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
               ),
             ),
             const SizedBox(height: 12),
@@ -119,12 +119,12 @@ class _DepositScreenState extends State<DepositScreen> {
                     currency,
                     style: TextStyle(
                       fontFamily: 'Changa',
-                      color: isSelected ? AppTheme.darkText : AppTheme.getTextColor(context),
+                      color: isSelected ? AppTheme.darkText : Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
                     ),
                   ),
                   selected: isSelected,
                   selectedColor: AppTheme.goldColor,
-                  backgroundColor: AppTheme.getCardColor(context),
+                  backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
                   onSelected: (selected) {
                     if (selected) {
                       setState(() => _selectedCurrency = currency);
@@ -141,7 +141,7 @@ class _DepositScreenState extends State<DepositScreen> {
                 fontFamily: 'Changa',
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: AppTheme.getTextColor(context),
+                color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
               ),
             ),
             const SizedBox(height: 12),
@@ -153,7 +153,7 @@ class _DepositScreenState extends State<DepositScreen> {
               decoration: InputDecoration(
                 hintText: 'أدخل المبلغ',
                 filled: true,
-                fillColor: AppTheme.getCardColor(context),
+                fillColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
@@ -184,7 +184,7 @@ class _DepositScreenState extends State<DepositScreen> {
                 fontFamily: 'Changa',
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: AppTheme.getTextColor(context),
+                color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
               ),
             ),
             const SizedBox(height: 12),

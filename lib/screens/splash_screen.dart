@@ -96,7 +96,7 @@ class _SplashScreenState extends State<SplashScreen>
                         width: 150,
                         height: 150,
                         decoration: BoxDecoration(
-                          gradient: AppTheme.goldGradient,
+                          gradient: const LinearGradient(colors: [AppTheme.goldColor, AppTheme.goldLight]),
                           borderRadius: BorderRadius.circular(30),
                           boxShadow: [
                             BoxShadow(
@@ -154,7 +154,7 @@ class _SplashScreenState extends State<SplashScreen>
                   style: TextStyle(
                     fontFamily: 'Changa',
                     fontSize: 16,
-                    color: AppTheme.getSecondaryTextColor(context),
+                    color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary,
                   ),
                 ),
               ),

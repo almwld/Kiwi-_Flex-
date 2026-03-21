@@ -12,7 +12,7 @@ class FollowingScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-        appBar: SimpleAppBar(
+        appBar: CustomAppBar(
           title: 'المتابعين',
           bottom: const TabBar(
             tabs: [Tab(text: 'المتابعين'), Tab(text: 'المتابَعين')],
@@ -28,7 +28,7 @@ class FollowingScreen extends StatelessWidget {
                 margin: const EdgeInsets.only(bottom: 12),
                 child: ListTile(
                   leading: const CircleAvatar(backgroundColor: AppTheme.goldColor, child: Icon(Icons.person, color: Colors.white)),
-                  title: Text('متابع ${index + 1}', style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
+                  title: Text('متابع ${index + 1}', style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
                   trailing: ElevatedButton(onPressed: () {}, style: ElevatedButton.styleFrom(backgroundColor: AppTheme.goldColor, foregroundColor: AppTheme.darkText), child: const Text('متابعة', style: TextStyle(fontFamily: 'Changa'))),
                 ),
               ),
@@ -40,7 +40,7 @@ class FollowingScreen extends StatelessWidget {
                 margin: const EdgeInsets.only(bottom: 12),
                 child: ListTile(
                   leading: const CircleAvatar(backgroundColor: AppTheme.goldColor, child: Icon(Icons.person, color: Colors.white)),
-                  title: Text('متابَع ${index + 1}', style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
+                  title: Text('متابَع ${index + 1}', style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
                   trailing: ElevatedButton(onPressed: () {}, style: ElevatedButton.styleFrom(backgroundColor: AppTheme.error, foregroundColor: Colors.white), child: const Text('إلغاء', style: TextStyle(fontFamily: 'Changa'))),
                 ),
               ),

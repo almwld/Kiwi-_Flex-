@@ -11,13 +11,13 @@ class SellerProfileScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'ملف البائع'),
+      appBar: const CustomAppBar(title: 'ملف البائع'),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
               padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(gradient: AppTheme.goldGradient, borderRadius: const BorderRadius.vertical(bottom: Radius.circular(30))),
+              decoration: BoxDecoration(gradient: const LinearGradient(colors: [AppTheme.goldColor, AppTheme.goldLight]), borderRadius: const BorderRadius.vertical(bottom: Radius.circular(30))),
               child: Column(
                 children: [
                   const CircleAvatar(radius: 50, backgroundColor: Colors.white, child: Icon(Icons.store, size: 50, color: AppTheme.goldColor)),
@@ -40,7 +40,7 @@ class SellerProfileScreen extends StatelessWidget {
               ]),
             ),
             const SizedBox(height: 24),
-            Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Text('إعلانات البائع', style: TextStyle(fontFamily: 'Changa', fontSize: 18, fontWeight: FontWeight.bold, color: AppTheme.getTextColor(context)))),
+            Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Text('إعلانات البائع', style: TextStyle(fontFamily: 'Changa', fontSize: 18, fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText))),
           ],
         ),
       ),

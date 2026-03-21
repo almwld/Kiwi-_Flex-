@@ -11,7 +11,7 @@ class AccountInfoScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'معلومات الحساب'),
+      appBar: const CustomAppBar(title: 'معلومات الحساب'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -31,7 +31,7 @@ class AccountInfoScreen extends StatelessWidget {
               decoration: InputDecoration(
                 labelText: 'الاسم الكامل',
                 filled: true,
-                fillColor: AppTheme.getCardColor(context),
+                fillColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
               ),
             ),
@@ -40,7 +40,7 @@ class AccountInfoScreen extends StatelessWidget {
               decoration: InputDecoration(
                 labelText: 'البريد الإلكتروني',
                 filled: true,
-                fillColor: AppTheme.getCardColor(context),
+                fillColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
               ),
             ),
@@ -49,7 +49,7 @@ class AccountInfoScreen extends StatelessWidget {
               decoration: InputDecoration(
                 labelText: 'رقم الهاتف',
                 filled: true,
-                fillColor: AppTheme.getCardColor(context),
+                fillColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
               ),
             ),
@@ -58,7 +58,7 @@ class AccountInfoScreen extends StatelessWidget {
               decoration: InputDecoration(
                 labelText: 'العنوان',
                 filled: true,
-                fillColor: AppTheme.getCardColor(context),
+                fillColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
               ),
             ),

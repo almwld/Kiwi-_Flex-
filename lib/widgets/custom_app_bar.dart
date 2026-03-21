@@ -32,7 +32,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: centerTitle,
       elevation: elevation,
       backgroundColor: backgroundColor ?? (isDark ? AppTheme.darkSurface : AppTheme.lightSurface),
-      foregroundColor: AppTheme.getTextColor(context),
+      foregroundColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
       leading: leading,
       bottom: bottom,
       title: showLogo
@@ -116,7 +116,7 @@ class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       elevation: 0,
       backgroundColor: AppTheme.getSurfaceColor(context),
-      foregroundColor: AppTheme.getTextColor(context),
+      foregroundColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
       leading: leading ?? IconButton(
         icon: const Icon(Icons.arrow_back_ios),
         onPressed: () => Navigator.pop(context),

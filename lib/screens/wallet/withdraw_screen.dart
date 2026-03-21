@@ -59,7 +59,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'سحب'),
+      appBar: const CustomAppBar(title: 'سحب'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -69,7 +69,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
               width: double.infinity,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                gradient: AppTheme.goldGradient,
+                gradient: const LinearGradient(colors: [AppTheme.goldColor, AppTheme.goldLight]),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Column(
@@ -82,13 +82,13 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
               ),
             ),
             const SizedBox(height: 32),
-            Text('العملة', style: TextStyle(fontFamily: 'Changa', fontSize: 16, fontWeight: FontWeight.w600, color: AppTheme.getTextColor(context))),
+            Text('العملة', style: TextStyle(fontFamily: 'Changa', fontSize: 16, fontWeight: FontWeight.w600, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
             const SizedBox(height: 12),
             Wrap(
               spacing: 12,
               children: _currencies.map((currency) {
                 return ChoiceChip(
-                  label: Text(currency, style: TextStyle(fontFamily: 'Changa', color: _selectedCurrency == currency ? AppTheme.darkText : AppTheme.getTextColor(context))),
+                  label: Text(currency, style: TextStyle(fontFamily: 'Changa', color: _selectedCurrency == currency ? AppTheme.darkText : Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
                   selected: _selectedCurrency == currency,
                   selectedColor: AppTheme.goldColor,
                   onSelected: (selected) => setState(() => _selectedCurrency = currency),
@@ -96,7 +96,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
               }).toList(),
             ),
             const SizedBox(height: 24),
-            Text('المبلغ', style: TextStyle(fontFamily: 'Changa', fontSize: 16, fontWeight: FontWeight.w600, color: AppTheme.getTextColor(context))),
+            Text('المبلغ', style: TextStyle(fontFamily: 'Changa', fontSize: 16, fontWeight: FontWeight.w600, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
             const SizedBox(height: 12),
             TextField(
               controller: _amountController,
@@ -106,12 +106,12 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
               decoration: InputDecoration(
                 hintText: 'أدخل المبلغ',
                 filled: true,
-                fillColor: AppTheme.getCardColor(context),
+                fillColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
               ),
             ),
             const SizedBox(height: 24),
-            Text('رقم الحساب/الجوال', style: TextStyle(fontFamily: 'Changa', fontSize: 16, fontWeight: FontWeight.w600, color: AppTheme.getTextColor(context))),
+            Text('رقم الحساب/الجوال', style: TextStyle(fontFamily: 'Changa', fontSize: 16, fontWeight: FontWeight.w600, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
             const SizedBox(height: 12),
             TextField(
               controller: _accountController,
@@ -121,12 +121,12 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
               decoration: InputDecoration(
                 hintText: 'أدخل رقم الحساب أو الجوال',
                 filled: true,
-                fillColor: AppTheme.getCardColor(context),
+                fillColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
               ),
             ),
             const SizedBox(height: 24),
-            Text('طريقة السحب', style: TextStyle(fontFamily: 'Changa', fontSize: 16, fontWeight: FontWeight.w600, color: AppTheme.getTextColor(context))),
+            Text('طريقة السحب', style: TextStyle(fontFamily: 'Changa', fontSize: 16, fontWeight: FontWeight.w600, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
             const SizedBox(height: 12),
             ..._methods.map((method) => RadioListTile<String>(
               title: Text(method, style: const TextStyle(fontFamily: 'Changa')),

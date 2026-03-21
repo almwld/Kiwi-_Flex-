@@ -11,7 +11,7 @@ class OrderDetailScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'تفاصيل الطلب'),
+      appBar: const CustomAppBar(title: 'تفاصيل الطلب'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -26,7 +26,7 @@ class OrderDetailScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('طلب #1001', style: TextStyle(fontFamily: 'Changa', fontSize: 18, fontWeight: FontWeight.bold, color: AppTheme.getTextColor(context))),
+                        Text('طلب #1001', style: TextStyle(fontFamily: 'Changa', fontSize: 18, fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                           decoration: BoxDecoration(color: AppTheme.success.withOpacity(0.1), borderRadius: BorderRadius.circular(20)),
@@ -43,7 +43,7 @@ class OrderDetailScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            Text('المنتجات', style: TextStyle(fontFamily: 'Changa', fontSize: 18, fontWeight: FontWeight.bold, color: AppTheme.getTextColor(context))),
+            Text('المنتجات', style: TextStyle(fontFamily: 'Changa', fontSize: 18, fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
             const SizedBox(height: 12),
             Card(
               child: ListTile(
@@ -53,7 +53,7 @@ class OrderDetailScreen extends StatelessWidget {
                   decoration: BoxDecoration(color: AppTheme.goldColor.withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
                   child: const Icon(Icons.phone_android, color: AppTheme.goldColor),
                 ),
-                title: Text('آيفون 15', style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
+                title: Text('آيفون 15', style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
                 subtitle: const Text('الكمية: 1', style: TextStyle(fontFamily: 'Changa')),
                 trailing: const Text('450,000 ر.ي', style: TextStyle(fontFamily: 'Changa', color: AppTheme.goldColor, fontWeight: FontWeight.bold)),
               ),

@@ -23,7 +23,7 @@ class OffersScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 child: Column(
                   children: [
-                    Text('عرض ${index + 1}', style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
+                    Text('عرض ${index + 1}', style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
                     const SizedBox(height: 4),
                     Container(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4), decoration: BoxDecoration(color: AppTheme.error.withOpacity(0.1), borderRadius: BorderRadius.circular(8)), child: const Text('-20%', style: TextStyle(fontFamily: 'Changa', color: AppTheme.error))),
                   ],

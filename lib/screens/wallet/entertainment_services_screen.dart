@@ -17,7 +17,7 @@ class EntertainmentServicesScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'خدمات ترفيه'),
+      appBar: const CustomAppBar(title: 'خدمات ترفيه'),
       body: GridView.builder(
         padding: const EdgeInsets.all(16),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 1.2),
@@ -29,7 +29,7 @@ class EntertainmentServicesScreen extends StatelessWidget {
               children: [
                 Icon(services[index]['icon'], size: 48, color: AppTheme.goldColor),
                 const SizedBox(height: 12),
-                Text(services[index]['name'], style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
+                Text(services[index]['name'], style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
               ],
             ),
           );

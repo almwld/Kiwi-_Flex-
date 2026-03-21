@@ -21,7 +21,7 @@ class SettingsScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'الإعدادات'),
+      appBar: const CustomAppBar(title: 'الإعدادات'),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: settings.length,
@@ -30,7 +30,7 @@ class SettingsScreen extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 12),
             child: ListTile(
               leading: Icon(settings[index]['icon'], color: AppTheme.goldColor),
-              title: Text(settings[index]['title'], style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
+              title: Text(settings[index]['title'], style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
               trailing: const Icon(Icons.arrow_forward_ios, size: 16),
               onTap: () => Navigator.pushNamed(context, settings[index]['route']),
             ),

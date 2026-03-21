@@ -11,7 +11,7 @@ class PaymentsScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'دفع الفواتير'),
+      appBar: const CustomAppBar(title: 'دفع الفواتير'),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -33,7 +33,7 @@ class PaymentsScreen extends StatelessWidget {
           decoration: BoxDecoration(color: color.withOpacity(0.1), borderRadius: BorderRadius.circular(10)),
           child: Icon(icon, color: color),
         ),
-        title: Text(title, style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
+        title: Text(title, style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
         subtitle: Text(amount, style: const TextStyle(fontFamily: 'Changa', color: AppTheme.goldColor, fontWeight: FontWeight.bold)),
         trailing: ElevatedButton(
           onPressed: () {},

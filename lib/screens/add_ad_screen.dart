@@ -11,7 +11,7 @@ class AddAdScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'إضافة إعلان'),
+      appBar: const CustomAppBar(title: 'إضافة إعلان'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -22,11 +22,11 @@ class AddAdScreen extends StatelessWidget {
               child: const Center(child: Icon(Icons.add_photo_alternate, size: 50, color: AppTheme.goldColor)),
             ),
             const SizedBox(height: 16),
-            TextField(decoration: InputDecoration(labelText: 'عنوان الإعلان', filled: true, fillColor: AppTheme.getCardColor(context), border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none))),
+            TextField(decoration: InputDecoration(labelText: 'عنوان الإعلان', filled: true, fillColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard, border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none))),
             const SizedBox(height: 16),
-            TextField(decoration: InputDecoration(labelText: 'السعر', filled: true, fillColor: AppTheme.getCardColor(context), border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none))),
+            TextField(decoration: InputDecoration(labelText: 'السعر', filled: true, fillColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard, border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none))),
             const SizedBox(height: 16),
-            TextField(maxLines: 4, decoration: InputDecoration(labelText: 'الوصف', filled: true, fillColor: AppTheme.getCardColor(context), border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none))),
+            TextField(maxLines: 4, decoration: InputDecoration(labelText: 'الوصف', filled: true, fillColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard, border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none))),
             const SizedBox(height: 24),
             CustomButton(text: 'نشر الإعلان', onPressed: () {}),
           ],

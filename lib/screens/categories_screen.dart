@@ -21,7 +21,7 @@ class CategoriesScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'الفئات'),
+      appBar: const CustomAppBar(title: 'الفئات'),
       body: GridView.builder(
         padding: const EdgeInsets.all(16),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 1.2),
@@ -34,7 +34,7 @@ class CategoriesScreen extends StatelessWidget {
               children: [
                 Icon(categories[index]['icon'], size: 48, color: AppTheme.goldColor),
                 const SizedBox(height: 12),
-                Text(categories[index]['name'], style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
+                Text(categories[index]['name'], style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
               ],
             ),
           ),

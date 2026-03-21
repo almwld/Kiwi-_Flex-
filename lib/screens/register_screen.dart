@@ -108,7 +108,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
-            color: AppTheme.getTextColor(context),
+            color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
           ),
           onPressed: () => Navigator.pop(context),
         ),
@@ -128,7 +128,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     fontFamily: 'Changa',
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: AppTheme.getTextColor(context),
+                    color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
                   ),
                 )
                     .animate()
@@ -140,7 +140,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   style: TextStyle(
                     fontFamily: 'Changa',
                     fontSize: 14,
-                    color: AppTheme.getSecondaryTextColor(context),
+                    color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary,
                   ),
                 )
                     .animate()
@@ -269,7 +269,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   style: TextStyle(
                     fontFamily: 'Changa',
                     fontSize: 14,
-                    color: AppTheme.getTextColor(context),
+                    color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -314,7 +314,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         style: TextStyle(
                           fontFamily: 'Changa',
                           fontSize: 13,
-                          color: AppTheme.getTextColor(context),
+                          color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
                         ),
                       ),
                       GestureDetector(
@@ -357,7 +357,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       'لديك حساب بالفعل؟',
                       style: TextStyle(
                         fontFamily: 'Changa',
-                        color: AppTheme.getSecondaryTextColor(context),
+                        color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary,
                       ),
                     ),
                     TextButton(
@@ -422,7 +422,7 @@ class _UserTypeCard extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: isSelected ? AppTheme.goldColor : AppTheme.getSecondaryTextColor(context),
+              color: isSelected ? AppTheme.goldColor : Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary,
               size: 32,
             ),
             const SizedBox(height: 8),
@@ -432,7 +432,7 @@ class _UserTypeCard extends StatelessWidget {
                 fontFamily: 'Changa',
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
-                color: isSelected ? AppTheme.goldColor : AppTheme.getTextColor(context),
+                color: isSelected ? AppTheme.goldColor : Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
               ),
             ),
             Text(
@@ -440,7 +440,7 @@ class _UserTypeCard extends StatelessWidget {
               style: TextStyle(
                 fontFamily: 'Changa',
                 fontSize: 11,
-                color: AppTheme.getSecondaryTextColor(context),
+                color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary,
               ),
             ),
           ],

@@ -172,7 +172,7 @@ class AdCard extends StatelessWidget {
                       fontFamily: 'Changa',
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
-                      color: AppTheme.getTextColor(context),
+                      color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -196,7 +196,7 @@ class AdCard extends StatelessWidget {
                             fontFamily: 'Changa',
                             fontSize: 12,
                             decoration: TextDecoration.lineThrough,
-                            color: AppTheme.getSecondaryTextColor(context),
+                            color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary,
                           ),
                         ),
                       ],
@@ -209,7 +209,7 @@ class AdCard extends StatelessWidget {
                       Icon(
                         Icons.location_on_outlined,
                         size: 14,
-                        color: AppTheme.getSecondaryTextColor(context),
+                        color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary,
                       ),
                       const SizedBox(width: 4),
                       Expanded(
@@ -220,7 +220,7 @@ class AdCard extends StatelessWidget {
                           style: TextStyle(
                             fontFamily: 'Changa',
                             fontSize: 12,
-                            color: AppTheme.getSecondaryTextColor(context),
+                            color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary,
                           ),
                         ),
                       ),
@@ -237,7 +237,7 @@ class AdCard extends StatelessWidget {
                           style: TextStyle(
                             fontFamily: 'Changa',
                             fontSize: 12,
-                            color: AppTheme.getTextColor(context),
+                            color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
                           ),
                         ),
                       ],
@@ -335,7 +335,7 @@ class AdCardHorizontal extends StatelessWidget {
                         fontFamily: 'Changa',
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: AppTheme.getTextColor(context),
+                        color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
                       ),
                     ),
                     const SizedBox(height: 8),

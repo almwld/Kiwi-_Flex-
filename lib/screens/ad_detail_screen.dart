@@ -20,15 +20,15 @@ class AdDetailScreen extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
-                Text('عنوان المنتج', style: TextStyle(fontFamily: 'Changa', fontSize: 24, fontWeight: FontWeight.bold, color: AppTheme.getTextColor(context))),
+                Text('عنوان المنتج', style: TextStyle(fontFamily: 'Changa', fontSize: 24, fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
                 const SizedBox(height: 8),
                 const Text('500,000 ر.ي', style: TextStyle(fontFamily: 'Changa', fontSize: 28, fontWeight: FontWeight.bold, color: AppTheme.goldColor)),
                 const SizedBox(height: 16),
-                Row(children: [const Icon(Icons.location_on, color: AppTheme.goldColor), const SizedBox(width: 8), Text('صنعاء', style: TextStyle(fontFamily: 'Changa', color: AppTheme.getSecondaryTextColor(context)))]),
+                Row(children: [const Icon(Icons.location_on, color: AppTheme.goldColor), const SizedBox(width: 8), Text('صنعاء', style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary))]),
                 const SizedBox(height: 24),
-                Text('الوصف', style: TextStyle(fontFamily: 'Changa', fontSize: 18, fontWeight: FontWeight.bold, color: AppTheme.getTextColor(context))),
+                Text('الوصف', style: TextStyle(fontFamily: 'Changa', fontSize: 18, fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
                 const SizedBox(height: 8),
-                Text('وصف تفصيلي للمنتج هنا...', style: TextStyle(fontFamily: 'Changa', color: AppTheme.getSecondaryTextColor(context))),
+                Text('وصف تفصيلي للمنتج هنا...', style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary)),
                 const SizedBox(height: 24),
                 Row(children: [
                   Expanded(child: CustomButton(text: 'محادثة', onPressed: () => Navigator.pushNamed(context, '/chat_detail'))),

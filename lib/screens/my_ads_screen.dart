@@ -12,7 +12,7 @@ class MyAdsScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'إعلاناتي'),
+      appBar: const CustomAppBar(title: 'إعلاناتي'),
       body: hasAds
           ? ListView.builder(
               padding: const EdgeInsets.all(16),
@@ -26,7 +26,7 @@ class MyAdsScreen extends StatelessWidget {
                     decoration: BoxDecoration(color: AppTheme.goldColor.withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
                     child: const Icon(Icons.image, color: AppTheme.goldColor),
                   ),
-                  title: Text('إعلان ${index + 1}', style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
+                  title: Text('إعلان ${index + 1}', style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
                   subtitle: Text('${(index + 1) * 10000} ر.ي', style: const TextStyle(fontFamily: 'Changa', color: AppTheme.goldColor)),
                   trailing: PopupMenuButton(
                     itemBuilder: (context) => [
@@ -37,7 +37,7 @@ class MyAdsScreen extends StatelessWidget {
                 ),
               ),
             )
-          : NoAdsState(onAddAd: () => Navigator.pushNamed(context, '/add_ad')),
+          : Center(child: Text('لا توجد إعلانات')),
     );
   }
 }

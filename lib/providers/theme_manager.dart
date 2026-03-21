@@ -59,7 +59,7 @@ class ThemeManager extends ChangeNotifier {
 
   /// الحصول على لون النص المناسب
   Color getTextColor(BuildContext context) {
-    return AppTheme.getTextColor(context);
+    return Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText;
   }
 
   /// الحصول على لون الخلفية المناسب
@@ -69,6 +69,6 @@ class ThemeManager extends ChangeNotifier {
 
   /// الحصول على لون البطاقة المناسب
   Color getCardColor(BuildContext context) {
-    return AppTheme.getCardColor(context);
+    return Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard;
   }
 }

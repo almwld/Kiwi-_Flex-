@@ -18,7 +18,7 @@ class ProfileScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                gradient: AppTheme.goldGradient,
+                gradient: const LinearGradient(colors: [AppTheme.goldColor, AppTheme.goldLight]),
                 borderRadius: const BorderRadius.vertical(bottom: Radius.circular(30)),
               ),
               child: Column(
@@ -85,7 +85,7 @@ class ProfileScreen extends StatelessWidget {
   Widget _buildMenuItem(BuildContext context, String title, IconData icon, String route) {
     return ListTile(
       leading: Icon(icon, color: AppTheme.goldColor),
-      title: Text(title, style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
+      title: Text(title, style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
       trailing: const Icon(Icons.arrow_forward_ios, size: 16),
       onTap: () => Navigator.pushNamed(context, route),
     );

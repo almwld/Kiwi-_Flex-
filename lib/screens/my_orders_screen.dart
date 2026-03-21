@@ -12,7 +12,7 @@ class MyOrdersScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'طلباتي'),
+      appBar: const CustomAppBar(title: 'طلباتي'),
       body: hasOrders
           ? ListView.builder(
               padding: const EdgeInsets.all(16),
@@ -20,7 +20,7 @@ class MyOrdersScreen extends StatelessWidget {
               itemBuilder: (context, index) => Card(
                 margin: const EdgeInsets.only(bottom: 12),
                 child: ListTile(
-                  title: Text('طلب #${1000 + index}', style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
+                  title: Text('طلب #${1000 + index}', style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
                   subtitle: Text('${(index + 1) * 50000} ر.ي', style: const TextStyle(fontFamily: 'Changa', color: AppTheme.goldColor)),
                   trailing: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),

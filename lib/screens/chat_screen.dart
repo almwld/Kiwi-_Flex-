@@ -21,12 +21,12 @@ class ChatScreen extends StatelessWidget {
                 margin: const EdgeInsets.only(bottom: 12),
                 child: ListTile(
                   leading: const CircleAvatar(backgroundColor: AppTheme.goldColor, child: Icon(Icons.person, color: Colors.white)),
-                  title: Text('مستخدم ${index + 1}', style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
+                  title: Text('مستخدم ${index + 1}', style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
                   subtitle: const Text('مرحباً، هل المنتج متوفر؟', style: TextStyle(fontFamily: 'Changa')),
                   trailing: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('10:30', style: TextStyle(fontFamily: 'Changa', fontSize: 12, color: AppTheme.getSecondaryTextColor(context))),
+                      Text('10:30', style: TextStyle(fontFamily: 'Changa', fontSize: 12, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary)),
                       const SizedBox(height: 4),
                       Container(
                         padding: const EdgeInsets.all(6),

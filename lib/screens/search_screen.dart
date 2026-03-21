@@ -17,7 +17,7 @@ class _SearchScreenState extends State<SearchScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: SimpleAppBar(
+      appBar: CustomAppBar(
         title: 'بحث',
         leading: IconButton(icon: const Icon(Icons.arrow_back_ios), onPressed: () => Navigator.pop(context)),
       ),
@@ -31,7 +31,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 hintText: 'ابحث عن منتج...',
                 prefixIcon: const Icon(Icons.search, color: AppTheme.goldColor),
                 filled: true,
-                fillColor: AppTheme.getCardColor(context),
+                fillColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
               ),
             ),
@@ -40,7 +40,7 @@ class _SearchScreenState extends State<SearchScreen> {
             child: ListView(
               padding: const EdgeInsets.all(16),
               children: [
-                Text('عمليات بحث حديثة', style: TextStyle(fontFamily: 'Changa', fontSize: 16, fontWeight: FontWeight.bold, color: AppTheme.getTextColor(context))),
+                Text('عمليات بحث حديثة', style: TextStyle(fontFamily: 'Changa', fontSize: 16, fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
                 const SizedBox(height: 12),
                 Wrap(
                   spacing: 8,

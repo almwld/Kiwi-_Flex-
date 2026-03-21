@@ -86,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: 100,
                     height: 100,
                     decoration: BoxDecoration(
-                      gradient: AppTheme.goldGradient,
+                      gradient: const LinearGradient(colors: [AppTheme.goldColor, AppTheme.goldLight]),
                       borderRadius: BorderRadius.circular(24),
                     ),
                     child: const Icon(
@@ -108,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     fontFamily: 'Changa',
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: AppTheme.getTextColor(context),
+                    color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
                   ),
                 )
                     .animate()
@@ -121,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(
                     fontFamily: 'Changa',
                     fontSize: 16,
-                    color: AppTheme.getSecondaryTextColor(context),
+                    color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary,
                   ),
                 )
                     .animate()
@@ -214,7 +214,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         'أو',
                         style: TextStyle(
                           fontFamily: 'Changa',
-                          color: AppTheme.getSecondaryTextColor(context),
+                          color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary,
                         ),
                       ),
                     ),
@@ -236,7 +236,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       'ليس لديك حساب؟',
                       style: TextStyle(
                         fontFamily: 'Changa',
-                        color: AppTheme.getSecondaryTextColor(context),
+                        color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary,
                       ),
                     ),
                     TextButton(

@@ -75,7 +75,7 @@ class _WalletScreenState extends State<WalletScreen> {
                   fontFamily: 'Changa',
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: AppTheme.getTextColor(context),
+                  color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
                 ),
               ),
             ),
@@ -104,7 +104,7 @@ class _WalletScreenState extends State<WalletScreen> {
           return Container(
             margin: const EdgeInsets.symmetric(horizontal: 16),
             decoration: BoxDecoration(
-              gradient: AppTheme.goldGradient,
+              gradient: const LinearGradient(colors: [AppTheme.goldColor, AppTheme.goldLight]),
               borderRadius: BorderRadius.circular(24),
               boxShadow: [
                 BoxShadow(
@@ -268,7 +268,7 @@ class _WalletScreenState extends State<WalletScreen> {
             },
             child: Container(
               decoration: BoxDecoration(
-                color: AppTheme.getCardColor(context),
+                color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
@@ -300,7 +300,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     style: TextStyle(
                       fontFamily: 'Changa',
                       fontSize: 12,
-                      color: AppTheme.getTextColor(context),
+                      color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
                     ),
                     textAlign: TextAlign.center,
                   ),

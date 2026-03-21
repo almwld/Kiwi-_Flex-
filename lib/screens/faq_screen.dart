@@ -16,15 +16,15 @@ class FaqScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'الأسئلة الشائعة'),
+      appBar: const CustomAppBar(title: 'الأسئلة الشائعة'),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: faqs.length,
         itemBuilder: (context, index) => Card(
           margin: const EdgeInsets.only(bottom: 12),
           child: ExpansionTile(
-            title: Text(faqs[index]['question']!, style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
-            children: [Padding(padding: const EdgeInsets.all(16), child: Text(faqs[index]['answer']!, style: TextStyle(fontFamily: 'Changa', color: AppTheme.getSecondaryTextColor(context))))],
+            title: Text(faqs[index]['question']!, style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
+            children: [Padding(padding: const EdgeInsets.all(16), child: Text(faqs[index]['answer']!, style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary)))],
           ),
         ),
       ),

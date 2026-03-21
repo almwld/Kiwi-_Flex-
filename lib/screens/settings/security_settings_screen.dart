@@ -11,7 +11,7 @@ class SecuritySettingsScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'الأمان'),
+      appBar: const CustomAppBar(title: 'الأمان'),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -19,7 +19,7 @@ class SecuritySettingsScreen extends StatelessWidget {
             Card(
               child: ListTile(
                 leading: const Icon(Icons.lock_outline, color: AppTheme.goldColor),
-                title: Text('تغيير كلمة المرور', style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
+                title: Text('تغيير كلمة المرور', style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
                 trailing: const Icon(Icons.arrow_forward_ios, size: 16),
                 onTap: () {},
               ),
@@ -28,7 +28,7 @@ class SecuritySettingsScreen extends StatelessWidget {
             Card(
               child: ListTile(
                 leading: const Icon(Icons.fingerprint, color: AppTheme.goldColor),
-                title: Text('المصادقة البيومترية', style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
+                title: Text('المصادقة البيومترية', style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
                 trailing: const Icon(Icons.arrow_forward_ios, size: 16),
                 onTap: () {},
               ),
@@ -37,7 +37,7 @@ class SecuritySettingsScreen extends StatelessWidget {
             Card(
               child: ListTile(
                 leading: const Icon(Icons.devices, color: AppTheme.goldColor),
-                title: Text('إدارة الأجهزة', style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
+                title: Text('إدارة الأجهزة', style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
                 trailing: const Icon(Icons.arrow_forward_ios, size: 16),
                 onTap: () {},
               ),

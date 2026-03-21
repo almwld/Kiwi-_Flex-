@@ -17,7 +17,7 @@ class TransactionsScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'سجل العمليات'),
+      appBar: const CustomAppBar(title: 'سجل العمليات'),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: transactions.length,
@@ -33,8 +33,8 @@ class TransactionsScreen extends StatelessWidget {
                   color: t['amount'].toString().startsWith('+') ? AppTheme.success : AppTheme.error,
                 ),
               ),
-              title: Text(t['type'], style: TextStyle(fontFamily: 'Changa', color: AppTheme.getTextColor(context))),
-              subtitle: Text(t['date'], style: TextStyle(fontFamily: 'Changa', color: AppTheme.getSecondaryTextColor(context))),
+              title: Text(t['type'], style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
+              subtitle: Text(t['date'], style: TextStyle(fontFamily: 'Changa', color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary)),
               trailing: Text(
                 t['amount'],
                 style: TextStyle(

@@ -404,7 +404,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontFamily: 'Changa',
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: AppTheme.getTextColor(context),
+                  color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
                 ),
               ),
               TextButton(
@@ -459,7 +459,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: TextStyle(
                           fontFamily: 'Changa',
                           fontSize: 12,
-                          color: AppTheme.getTextColor(context),
+                          color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -489,7 +489,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontFamily: 'Changa',
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: AppTheme.getTextColor(context),
+                  color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
                 ),
               ),
               TextButton(
@@ -547,7 +547,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontFamily: 'Changa',
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: AppTheme.getTextColor(context),
+                  color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
                 ),
               ),
               TextButton(
@@ -600,7 +600,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: TextStyle(
                           fontFamily: 'Changa',
                           fontSize: 11,
-                          color: AppTheme.getTextColor(context),
+                          color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -630,7 +630,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontFamily: 'Changa',
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: AppTheme.getTextColor(context),
+                  color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
                 ),
               ),
               TextButton(
@@ -683,7 +683,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: TextStyle(
                           fontFamily: 'Changa',
                           fontSize: 11,
-                          color: AppTheme.getTextColor(context),
+                          color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -713,7 +713,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontFamily: 'Changa',
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: AppTheme.getTextColor(context),
+                  color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
                 ),
               ),
               TextButton(

@@ -104,7 +104,7 @@ class _MainNavigationState extends State<MainNavigation> {
           children: [
             Icon(
               icon,
-              color: isSelected ? AppTheme.goldColor : AppTheme.getSecondaryTextColor(context),
+              color: isSelected ? AppTheme.goldColor : Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary,
               size: 24,
             ),
             const SizedBox(height: 4),
@@ -113,7 +113,7 @@ class _MainNavigationState extends State<MainNavigation> {
               style: TextStyle(
                 fontFamily: 'Changa',
                 fontSize: 11,
-                color: isSelected ? AppTheme.goldColor : AppTheme.getSecondaryTextColor(context),
+                color: isSelected ? AppTheme.goldColor : Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
             ),
@@ -130,7 +130,7 @@ class _MainNavigationState extends State<MainNavigation> {
         width: 56,
         height: 56,
         decoration: BoxDecoration(
-          gradient: AppTheme.goldGradient,
+          gradient: const LinearGradient(colors: [AppTheme.goldColor, AppTheme.goldLight]),
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(

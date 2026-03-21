@@ -32,12 +32,12 @@ class ChatDetailScreen extends StatelessWidget {
                     margin: const EdgeInsets.only(bottom: 12),
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: isMe ? AppTheme.goldColor : AppTheme.getCardColor(context),
+                      color: isMe ? AppTheme.goldColor : Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Text(
                       isMe ? 'مرحباً، هل المنتج متوفر؟' : 'نعم، المنتج متوفر',
-                      style: TextStyle(fontFamily: 'Changa', color: isMe ? AppTheme.darkText : AppTheme.getTextColor(context)),
+                      style: TextStyle(fontFamily: 'Changa', color: isMe ? AppTheme.darkText : Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText),
                     ),
                   ),
                 );
@@ -54,7 +54,7 @@ class ChatDetailScreen extends StatelessWidget {
                     decoration: InputDecoration(
                       hintText: 'اكتب رسالتك...',
                       filled: true,
-                      fillColor: AppTheme.getCardColor(context),
+                      fillColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(24), borderSide: BorderSide.none),
                     ),
                   ),

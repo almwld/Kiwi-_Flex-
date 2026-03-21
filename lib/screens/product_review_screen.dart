@@ -19,13 +19,13 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'تقييم المنتج'),
+      appBar: const CustomAppBar(title: 'تقييم المنتج'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('كيف كان المنتج؟', style: TextStyle(fontFamily: 'Changa', fontSize: 20, fontWeight: FontWeight.bold, color: AppTheme.getTextColor(context))),
+            Text('كيف كان المنتج؟', style: TextStyle(fontFamily: 'Changa', fontSize: 20, fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
             const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -41,7 +41,7 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
               decoration: InputDecoration(
                 hintText: 'اكتب تقييمك هنا...',
                 filled: true,
-                fillColor: AppTheme.getCardColor(context),
+                fillColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
               ),
             ),

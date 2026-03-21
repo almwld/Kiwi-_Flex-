@@ -21,13 +21,13 @@ class _ReportAdScreenState extends State<ReportAdScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'الإبلاغ عن إعلان'),
+      appBar: const CustomAppBar(title: 'الإبلاغ عن إعلان'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('سبب الإبلاغ:', style: TextStyle(fontFamily: 'Changa', fontSize: 16, fontWeight: FontWeight.w600, color: AppTheme.getTextColor(context))),
+            Text('سبب الإبلاغ:', style: TextStyle(fontFamily: 'Changa', fontSize: 16, fontWeight: FontWeight.w600, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
             const SizedBox(height: 12),
             Wrap(
               spacing: 8,
@@ -39,7 +39,7 @@ class _ReportAdScreenState extends State<ReportAdScreen> {
               )).toList(),
             ),
             const SizedBox(height: 24),
-            Text('تفاصيل إضافية:', style: TextStyle(fontFamily: 'Changa', fontSize: 16, fontWeight: FontWeight.w600, color: AppTheme.getTextColor(context))),
+            Text('تفاصيل إضافية:', style: TextStyle(fontFamily: 'Changa', fontSize: 16, fontWeight: FontWeight.w600, color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText)),
             const SizedBox(height: 12),
             TextField(
               controller: _detailsController,
@@ -47,7 +47,7 @@ class _ReportAdScreenState extends State<ReportAdScreen> {
               decoration: InputDecoration(
                 hintText: 'اشرح المشكلة بالتفصيل...',
                 filled: true,
-                fillColor: AppTheme.getCardColor(context),
+                fillColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
               ),
             ),

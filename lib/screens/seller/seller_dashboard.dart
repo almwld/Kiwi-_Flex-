@@ -12,7 +12,7 @@ class SellerDashboard extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'لوحة تحكم البائع'),
+      appBar: const CustomAppBar(title: 'لوحة تحكم البائع'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -40,7 +40,7 @@ class SellerDashboard extends StatelessWidget {
                 fontFamily: 'Changa',
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: AppTheme.getTextColor(context),
+                color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
               ),
             ),
             const SizedBox(height: 12),
@@ -62,14 +62,14 @@ class SellerDashboard extends StatelessWidget {
                     'طلب #${1000 + index}',
                     style: TextStyle(
                       fontFamily: 'Changa',
-                      color: AppTheme.getTextColor(context),
+                      color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
                     ),
                   ),
                   subtitle: Text(
                     '2024-01-${15 - index}',
                     style: TextStyle(
                       fontFamily: 'Changa',
-                      color: AppTheme.getSecondaryTextColor(context),
+                      color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary,
                     ),
                   ),
                   trailing: Text(

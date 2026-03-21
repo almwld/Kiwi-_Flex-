@@ -26,7 +26,7 @@ class LoadingWidget extends StatelessWidget {
               message!,
               style: TextStyle(
                 fontFamily: 'Changa',
-                color: AppTheme.getTextColor(context),
+                color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkText : AppTheme.lightText,
               ),
             ),
           ],
@@ -205,7 +205,7 @@ class CustomRefreshIndicator extends StatelessWidget {
     return RefreshIndicator(
       onRefresh: onRefresh,
       color: AppTheme.goldColor,
-      backgroundColor: AppTheme.getCardColor(context),
+      backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkCard : AppTheme.lightCard,
       child: child,
     );
   }

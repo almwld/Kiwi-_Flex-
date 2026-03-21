@@ -10,7 +10,7 @@ class ChangelogScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const SimpleAppBar(title: 'سجل التحديثات'),
+      appBar: const CustomAppBar(title: 'سجل التحديثات'),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
