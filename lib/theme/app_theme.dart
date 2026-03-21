@@ -409,11 +409,6 @@ class AppTheme {
   }
 
   /// الحصول على لون الفاصل المناسب للثيم
-  static Color getDividerColor(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.dark
-        ? darkDivider
-        : lightDivider;
-  }
 
   /// تدرج ذهبي
   static LinearGradient get goldGradient => const LinearGradient(
@@ -444,8 +439,3 @@ class AppTheme {
       );
 }
 
-  static Color getDividerColor(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.dark
-        ? darkDivider
-        : lightDivider;
-  }
