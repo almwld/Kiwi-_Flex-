@@ -3,48 +3,77 @@ name: Build Flex Yemen
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - uses: subosito/flutter-action@v2
+      
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.24.0'
-
-      - name: Create fresh Flutter project
+          cache: false
+      
+      - name: Clean project
+        run: |
+          rm -rf build .dart_tool
+          flutter clean
+      
+      - name: Create fresh Android project
         run: |
           mkdir -p /tmp/fresh_project
           cd /tmp/fresh_project
           flutter create --org com.flexyemen --project-name flex_temp .
           cd $GITHUB_WORKSPACE
-          # احتفظ بمجلدات lib, assets, pubspec.yaml, .env, إلخ
-          # احذف android, ios, windows, macos, linux, web إن وجدت
-          rm -rf android ios windows macos linux web
+          rm -rf android ios
           cp -r /tmp/fresh_project/android .
           cp -r /tmp/fresh_project/ios .
-          cp -r /tmp/fresh_project/windows . 2>/dev/null || true
-          cp -r /tmp/fresh_project/macos . 2>/dev/null || true
-          cp -r /tmp/fresh_project/linux . 2>/dev/null || true
-          cp -r /tmp/fresh_project/web . 2>/dev/null || true
           rm -rf /tmp/fresh_project
+      
+      - name: Fix Gradle configuration
+        run: |
+          # إضافة compileSdkVersion و minSdkVersion إلى build.gradle
+          cat >> android/build.gradle << 'GRADLE_EOF'
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
 
+subprojects {
+    afterEvaluate { project ->
+        if (project.hasProperty('android')) {
+            project.android {
+                compileSdkVersion 34
+                if (it.hasProperty('defaultConfig')) {
+                    it.defaultConfig {
+                        minSdkVersion 21
+                    }
+                }
+            }
+        }
+    }
+}
+GRADLE_EOF
+      
       - name: Set app name
         run: |
           sed -i 's/android:label="flex_temp"/android:label="Flex Yemen Market"/g' android/app/src/main/AndroidManifest.xml
-
+      
       - name: Get dependencies
         run: flutter pub get
-
+      
+      - name: Generate launcher icons
+        run: flutter pub run flutter_launcher_icons || true
+      
       - name: Build APK
         run: flutter build apk --release --split-per-abi
-
-      - uses: actions/upload-artifact@v4
+      
+      - name: Upload APKs
+        uses: actions/upload-artifact@v4
         with:
           name: app-release
           path: build/app/outputs/flutter-apk/*.apk
