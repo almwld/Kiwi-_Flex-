@@ -258,7 +258,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: const CustomAppBar(showLogo: true),
       body: _isLoading
           ? const LoadingWidget(message: 'جاري التحميل...')
-          : CustomRefreshIndicator(
+          : RefreshIndicator(
               onRefresh: _loadData,
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),

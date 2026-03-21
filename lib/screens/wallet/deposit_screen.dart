@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/custom_button.dart';
-import '../../widgets/simple_app_bar.dart';
 
 /// شاشة الإيداع
 class DepositScreen extends StatefulWidget {

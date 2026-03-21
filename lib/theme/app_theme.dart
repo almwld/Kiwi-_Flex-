@@ -443,3 +443,9 @@ class AppTheme {
         offset: const Offset(0, 4),
       );
 }
+
+  static Color getDividerColor(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark
+        ? darkDivider
+        : lightDivider;
+  }

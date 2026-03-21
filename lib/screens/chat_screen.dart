@@ -39,7 +39,7 @@ class ChatScreen extends StatelessWidget {
                 ),
               ),
             )
-          : NoMessagesState(onStartChat: () {}),
+          : Center(child: Text('لا توجد محادثات')),
     );
   }
 }

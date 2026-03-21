@@ -1,3 +1,4 @@
+import '../../widgets/password_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../services/supabase_service.dart';
@@ -205,7 +206,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Expanded(
                       child: Divider(
-                        color: AppTheme.getDividerColor(context),
+                        color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkDivider : AppTheme.lightDivider,
                       ),
                     ),
                     Padding(
@@ -220,7 +221,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     Expanded(
                       child: Divider(
-                        color: AppTheme.getDividerColor(context),
+                        color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkDivider : AppTheme.lightDivider,
                       ),
                     ),
                   ],

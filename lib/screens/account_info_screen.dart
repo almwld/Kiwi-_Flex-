@@ -1,7 +1,7 @@
+import '../../widgets/simple_app_bar.dart';
 import 'package:flutter/material.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/custom_button.dart';
-import '../../widgets/simple_app_bar.dart';
 
 class AccountInfoScreen extends StatelessWidget {
   const AccountInfoScreen({super.key});
