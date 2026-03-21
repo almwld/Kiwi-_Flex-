@@ -11,7 +11,7 @@ class MyOrdersScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'طلباتي'),
+      appBar: CustomAppBar(title: 'طلباتي'),
       body: hasOrders
           ? ListView.builder(
               padding: const EdgeInsets.all(16),
@@ -30,7 +30,7 @@ class MyOrdersScreen extends StatelessWidget {
                 ),
               ),
             )
-          : NoOrdersState(onShopNow: () => Navigator.pushNamed(context, '/all_ads')),
+          : Center(child: Text('لا توجد طلبات')),
     );
   }
 }

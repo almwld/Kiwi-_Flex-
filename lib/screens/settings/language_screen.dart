@@ -16,7 +16,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'اللغة'),
+      appBar: CustomAppBar(title: 'اللغة'),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [

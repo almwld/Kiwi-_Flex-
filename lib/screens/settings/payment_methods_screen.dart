@@ -9,7 +9,7 @@ class PaymentMethodsScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'طرق الدفع'),
+      appBar: CustomAppBar(title: 'طرق الدفع'),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [

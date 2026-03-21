@@ -10,7 +10,7 @@ class AuctionsScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'المزادات'),
+      appBar: CustomAppBar(title: 'المزادات'),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: 5,

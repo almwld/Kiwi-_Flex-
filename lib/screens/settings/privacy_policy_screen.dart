@@ -9,7 +9,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'سياسة الخصوصية'),
+      appBar: CustomAppBar(title: 'سياسة الخصوصية'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(

@@ -11,7 +11,7 @@ class SellerDashboard extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'لوحة تحكم البائع'),
+      appBar: CustomAppBar(title: 'لوحة تحكم البائع'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(

@@ -16,7 +16,7 @@ class FaqScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'الأسئلة الشائعة'),
+      appBar: CustomAppBar(title: 'الأسئلة الشائعة'),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: faqs.length,

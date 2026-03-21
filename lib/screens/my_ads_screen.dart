@@ -11,7 +11,7 @@ class MyAdsScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'إعلاناتي'),
+      appBar: CustomAppBar(title: 'إعلاناتي'),
       body: hasAds
           ? ListView.builder(
               padding: const EdgeInsets.all(16),

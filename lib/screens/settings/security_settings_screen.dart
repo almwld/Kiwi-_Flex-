@@ -10,7 +10,7 @@ class SecuritySettingsScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'الأمان'),
+      appBar: CustomAppBar(title: 'الأمان'),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

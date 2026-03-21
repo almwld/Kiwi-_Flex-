@@ -12,7 +12,7 @@ class ChatScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'الدردشة'),
+      appBar: CustomAppBar(title: 'الدردشة'),
       body: hasChats
           ? ListView.builder(
               padding: const EdgeInsets.all(16),

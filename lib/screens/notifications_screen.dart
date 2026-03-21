@@ -11,7 +11,7 @@ class NotificationsScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'الإشعارات'),
+      appBar: CustomAppBar(title: 'الإشعارات'),
       body: hasNotifications
           ? ListView.builder(
               padding: const EdgeInsets.all(16),
@@ -26,7 +26,7 @@ class NotificationsScreen extends StatelessWidget {
                 ),
               ),
             )
-          : const EmptyState(icon: Icons.notifications_none, title: 'لا توجد إشعارات'),
+          : EmptyState(icon: Icons.notifications_none, title: 'لا توجد إشعارات'),
     );
   }
 }

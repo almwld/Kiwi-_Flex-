@@ -20,7 +20,7 @@ class _ReportAdScreenState extends State<ReportAdScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'الإبلاغ عن إعلان'),
+      appBar: CustomAppBar(title: 'الإبلاغ عن إعلان'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(

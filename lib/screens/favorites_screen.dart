@@ -12,7 +12,7 @@ class FavoritesScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'المفضلة'),
+      appBar: CustomAppBar(title: 'المفضلة'),
       body: hasFavorites
           ? ListView.builder(
               padding: const EdgeInsets.all(16),

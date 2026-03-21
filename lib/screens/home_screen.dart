@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<ProductModel> _getDummyProducts() {
     return [
-      ProductModel(
+      ProductModel(subCategory: "", 
         id: '1',
         title: 'آيفون 15 برو ماكس 256GB',
         description: 'هاتف أيفون جديد بالكامل مع ضمان سنة',
@@ -119,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
         reviewCount: 120,
         createdAt: DateTime.now(),
       ),
-      ProductModel(
+      ProductModel(subCategory: "", 
         id: '2',
         title: 'لابتوب Dell XPS 15',
         description: 'لابتوب احترافي للأعمال والتصميم',
@@ -133,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
         reviewCount: 85,
         createdAt: DateTime.now(),
       ),
-      ProductModel(
+      ProductModel(subCategory: "", 
         id: '3',
         title: 'سيارة تويوتا كامري 2020',
         description: 'سيارة نظيفة جداً، ممشى قليل',
@@ -147,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
         reviewCount: 45,
         createdAt: DateTime.now(),
       ),
-      ProductModel(
+      ProductModel(subCategory: "", 
         id: '4',
         title: 'شقة فاخرة للإيجار',
         description: '3 غرف، 2 حمام، صالة كبيرة',
@@ -166,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<ProductModel> _getDummyAuctionProducts() {
     return [
-      ProductModel(
+      ProductModel(subCategory: "", 
         id: 'a1',
         title: 'جندية صيفاني قديمة',
         description: 'جندية أثرية نادرة',
@@ -179,12 +179,11 @@ class _HomeScreenState extends State<HomeScreen> {
         rating: 5.0,
         reviewCount: 15,
         createdAt: DateTime.now(),
-        isAuction: true,
         auctionEndTime: DateTime.now().add(const Duration(days: 2)),
         currentBid: 150000,
         bidCount: 8,
       ),
-      ProductModel(
+      ProductModel(subCategory: "", 
         id: 'a2',
         title: 'ساعة رولكس أصلية',
         description: 'ساعة فاخرة بحالة ممتازة',
@@ -197,12 +196,11 @@ class _HomeScreenState extends State<HomeScreen> {
         rating: 4.9,
         reviewCount: 50,
         createdAt: DateTime.now(),
-        isAuction: true,
         auctionEndTime: DateTime.now().add(const Duration(hours: 12)),
         currentBid: 2500000,
         bidCount: 23,
       ),
-      ProductModel(
+      ProductModel(subCategory: "", 
         id: 'a3',
         title: 'سجادة يدوية فارسية',
         description: 'سجادة صوف يدوية الصنع',
@@ -215,12 +213,11 @@ class _HomeScreenState extends State<HomeScreen> {
         rating: 4.7,
         reviewCount: 22,
         createdAt: DateTime.now(),
-        isAuction: true,
         auctionEndTime: DateTime.now().add(const Duration(days: 3)),
         currentBid: 450000,
         bidCount: 5,
       ),
-      ProductModel(
+      ProductModel(subCategory: "", 
         id: 'a4',
         title: 'لوحة فنية نادرة',
         description: 'لوحة زيت أصلية للفنان...',
@@ -233,7 +230,6 @@ class _HomeScreenState extends State<HomeScreen> {
         rating: 5.0,
         reviewCount: 10,
         createdAt: DateTime.now(),
-        isAuction: true,
         auctionEndTime: DateTime.now().add(const Duration(days: 1)),
         currentBid: 1200000,
         bidCount: 12,
@@ -247,7 +243,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(showLogo: true),
+      appBar: CustomAppBar(showLogo: true),
       body: _isLoading
           ? const LoadingWidget(message: 'جاري التحميل...')
           : RefreshIndicator(

@@ -18,7 +18,7 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'تقييم المنتج'),
+      appBar: CustomAppBar(title: 'تقييم المنتج'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(

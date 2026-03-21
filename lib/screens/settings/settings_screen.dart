@@ -20,7 +20,7 @@ class SettingsScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'الإعدادات'),
+      appBar: CustomAppBar(title: 'الإعدادات'),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: settings.length,

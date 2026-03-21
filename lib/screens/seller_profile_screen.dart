@@ -10,7 +10,7 @@ class SellerProfileScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'ملف البائع'),
+      appBar: CustomAppBar(title: 'ملف البائع'),
       body: SingleChildScrollView(
         child: Column(
           children: [

@@ -12,7 +12,7 @@ class FollowingScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-        appBar: CustomAppBar(
+        appBar: const CustomAppBar(
           title: 'المتابعين',
           bottom: const TabBar(
             tabs: [Tab(text: 'المتابعين'), Tab(text: 'المتابَعين')],
