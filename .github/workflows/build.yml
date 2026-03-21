@@ -15,35 +15,18 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Create fresh Flutter project
+      - name: Create .env file from secrets
         run: |
-          # إنشاء مشروع Flutter جديد في مجلد مؤقت
-          mkdir -p /tmp/fresh
-          cd /tmp/fresh
-          flutter create --org com.flexyemen --project-name fresh_project .
-          
-          # نسخ الكود والأصول من المشروع الحالي
-          cd $GITHUB_WORKSPACE
-          cp -r lib /tmp/fresh/
-          cp -r assets /tmp/fresh/ 2>/dev/null || true
-          cp pubspec.yaml /tmp/fresh/
-          cp .env /tmp/fresh/ 2>/dev/null || true
-          
-          # استبدال المشروع الحالي بالمشروع الجديد
-          rm -rf lib assets pubspec.yaml .env
-          cp -r /tmp/fresh/* .
-          rm -rf /tmp/fresh
+          echo "SUPABASE_URL=${{ secrets.SUPABASE_URL }}" >> .env
+          echo "SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}" >> .env
+          echo "MAP_API_KEY=${{ secrets.MAP_API_KEY }}" >> .env
 
-      - name: Fix app name
+      - name: Build APK with dart-define
         run: |
-          sed -i 's/android:label="fresh_project"/android:label="Flex Yemen Market"/g' android/app/src/main/AndroidManifest.xml
-          sed -i 's/ios.app/flex_yemen/g' ios/Runner.xcodeproj/project.pbxproj 2>/dev/null || true
-
-      - name: Get dependencies
-        run: flutter pub get
-
-      - name: Build APK (split-per-abi)
-        run: flutter build apk --release --split-per-abi
+          flutter build apk --release --split-per-abi \
+            --dart-define=SUPABASE_URL="${{ secrets.SUPABASE_URL }}" \
+            --dart-define=SUPABASE_ANON_KEY="${{ secrets.SUPABASE_ANON_KEY }}" \
+            --dart-define=MAP_API_KEY="${{ secrets.MAP_API_KEY }}"
 
       - name: Upload APKs
         uses: actions/upload-artifact@v4
