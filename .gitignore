@@ -71,3 +71,4 @@ GoogleService-Info.plist
 # Supabase
 supabase/.temp/
 .env
+.env

@@ -1,11 +1,9 @@
-import '../widgets/custom_app_bar.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../services/supabase_service.dart';
 import '../theme/app_theme.dart';
 
-/// شاشة الترحيب
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -56,7 +54,6 @@ class _SplashScreenState extends State<SplashScreen>
 
     if (!mounted) return;
 
-    // التحقق من حالة تسجيل الدخول
     if (SupabaseService.isAuthenticated) {
       Navigator.pushReplacementNamed(context, '/main');
     } else {
@@ -85,7 +82,6 @@ class _SplashScreenState extends State<SplashScreen>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // الشعار
               AnimatedBuilder(
                 animation: _controller,
                 builder: (context, child) {
@@ -97,7 +93,9 @@ class _SplashScreenState extends State<SplashScreen>
                         width: 150,
                         height: 150,
                         decoration: BoxDecoration(
-                          gradient: const LinearGradient(colors: [AppTheme.goldColor, AppTheme.goldLight]),
+                          gradient: const LinearGradient(
+                            colors: [AppTheme.goldColor, AppTheme.goldLight],
+                          ),
                           borderRadius: BorderRadius.circular(30),
                           boxShadow: [
                             BoxShadow(
@@ -118,7 +116,6 @@ class _SplashScreenState extends State<SplashScreen>
                 },
               ),
               const SizedBox(height: 40),
-              // اسم التطبيق
               FadeTransition(
                 opacity: _fadeAnimation,
                 child: Row(
@@ -147,7 +144,6 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
               ),
               const SizedBox(height: 16),
-              // الشعار الفرعي
               FadeTransition(
                 opacity: _fadeAnimation,
                 child: Text(
@@ -155,23 +151,16 @@ class _SplashScreenState extends State<SplashScreen>
                   style: TextStyle(
                     fontFamily: 'Changa',
                     fontSize: 16,
-                    color: Theme.of(context).brightness == Brightness.dark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary,
+                    color: isDark ? AppTheme.darkTextSecondary : AppTheme.lightTextSecondary,
                   ),
                 ),
               ),
               const SizedBox(height: 60),
-              // مؤشر التحميل
               const CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(AppTheme.goldColor),
                 strokeWidth: 3,
               ),
-            ].animate(
-              interval: const Duration(milliseconds: 100),
-            ).fadeIn().slideY(
-              begin: 0.3,
-              end: 0,
-              duration: const Duration(milliseconds: 600),
-            ),
+            ],
           ),
         ),
       ),

@@ -71,19 +71,14 @@ import 'screens/wallet/receive_transfer_request_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // تهيئة التخزين المحلي
   await LocalStorageService.init();
-
-  // تحميل متغيرات البيئة
   await dotenv.load(fileName: ".env");
 
-  // تهيئة Supabase
   await Supabase.initialize(
     url: dotenv.env['SUPABASE_URL']!,
     anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
   );
 
-  // إعدادات النظام
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -162,7 +157,6 @@ class MyApp extends StatelessWidget {
               '/about': (context) => const AboutScreen(),
               '/privacy_policy': (context) => const PrivacyPolicyScreen(),
               '/help_support': (context) => const HelpSupportScreen(),
-              // صفحات المحفظة
               '/deposit': (context) => const DepositScreen(),
               '/withdraw': (context) => const WithdrawScreen(),
               '/transfer': (context) => const TransferScreen(),
