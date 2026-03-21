@@ -1,3 +1,4 @@
+import '../widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import '../../theme/app_theme.dart';
 
@@ -26,7 +27,7 @@ class NotificationsScreen extends StatelessWidget {
                 ),
               ),
             )
-          : EmptyState(icon: Icons.notifications_none, title: 'لا توجد إشعارات'),
+          : Center(child: Text('لا توجد إشعارات')),
     );
   }
 }

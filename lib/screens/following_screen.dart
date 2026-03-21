@@ -1,3 +1,4 @@
+import '../widgets/custom_app_bar.dart';
 import '../../widgets/simple_app_bar.dart';
 import 'package:flutter/material.dart';
 import '../../theme/app_theme.dart';
@@ -12,7 +13,7 @@ class FollowingScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-        appBar: const CustomAppBar(
+        appBar: CustomAppBar(
           title: 'المتابعين',
           bottom: const TabBar(
             tabs: [Tab(text: 'المتابعين'), Tab(text: 'المتابَعين')],
