@@ -27,31 +27,12 @@ jobs:
           cp -r /tmp/fresh_project/ios .
           rm -rf /tmp/fresh_project
 
-      - name: Fix Gradle configuration
+      - name: Fix minSdkVersion
         run: |
-          cat >> android/build.gradle << 'GRADLE_EOF'
-          allprojects {
-              repositories {
-                  google()
-                  mavenCentral()
-              }
-          }
-          
-          subprojects {
-              afterEvaluate { project ->
-                  if (project.hasProperty('android')) {
-                      project.android {
-                          compileSdkVersion 34
-                          if (it.hasProperty('defaultConfig')) {
-                              it.defaultConfig {
-                                  minSdkVersion 21
-                              }
-                          }
-                      }
-                  }
-              }
-          }
-          GRADLE_EOF
+          # تغيير minSdkVersion من 21 إلى 23
+          sed -i 's/minSdkVersion 21/minSdkVersion 23/g' android/app/build.gradle
+          # إضافة compileSdkVersion 34 إذا لم تكن موجودة
+          grep -q "compileSdkVersion 34" android/app/build.gradle || sed -i '/android {/a \    compileSdkVersion 34' android/app/build.gradle
 
       - name: Set app name
         run: |
