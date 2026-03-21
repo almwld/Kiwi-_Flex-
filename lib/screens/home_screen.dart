@@ -117,7 +117,6 @@ class _HomeScreenState extends State<HomeScreen> {
         sellerName: 'متجر التقنية',
         rating: 4.8,
         reviewCount: 120,
-        city: 'صنعاء',
         createdAt: DateTime.now(),
       ),
       ProductModel(
@@ -132,7 +131,6 @@ class _HomeScreenState extends State<HomeScreen> {
         sellerName: 'الحاسوب المتقدم',
         rating: 4.5,
         reviewCount: 85,
-        city: 'عدن',
         createdAt: DateTime.now(),
       ),
       ProductModel(
@@ -147,7 +145,6 @@ class _HomeScreenState extends State<HomeScreen> {
         sellerName: 'معرض السيارات',
         rating: 4.9,
         reviewCount: 45,
-        city: 'تعز',
         createdAt: DateTime.now(),
       ),
       ProductModel(
@@ -162,7 +159,6 @@ class _HomeScreenState extends State<HomeScreen> {
         sellerName: 'العقارات الذهبية',
         rating: 4.6,
         reviewCount: 30,
-        city: 'صنعاء',
         createdAt: DateTime.now(),
       ),
     ];
@@ -182,7 +178,6 @@ class _HomeScreenState extends State<HomeScreen> {
         sellerName: 'صاحب التحف',
         rating: 5.0,
         reviewCount: 15,
-        city: 'صنعاء',
         createdAt: DateTime.now(),
         isAuction: true,
         auctionEndTime: DateTime.now().add(const Duration(days: 2)),
@@ -201,7 +196,6 @@ class _HomeScreenState extends State<HomeScreen> {
         sellerName: 'الساعات الفاخرة',
         rating: 4.9,
         reviewCount: 50,
-        city: 'عدن',
         createdAt: DateTime.now(),
         isAuction: true,
         auctionEndTime: DateTime.now().add(const Duration(hours: 12)),
@@ -220,7 +214,6 @@ class _HomeScreenState extends State<HomeScreen> {
         sellerName: 'سجاد الشرق',
         rating: 4.7,
         reviewCount: 22,
-        city: 'تعز',
         createdAt: DateTime.now(),
         isAuction: true,
         auctionEndTime: DateTime.now().add(const Duration(days: 3)),
@@ -239,7 +232,6 @@ class _HomeScreenState extends State<HomeScreen> {
         sellerName: 'معرض الفنون',
         rating: 5.0,
         reviewCount: 10,
-        city: 'صنعاء',
         createdAt: DateTime.now(),
         isAuction: true,
         auctionEndTime: DateTime.now().add(const Duration(days: 1)),

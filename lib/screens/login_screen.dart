@@ -147,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     .slideX(begin: -0.2),
                 const SizedBox(height: 20),
                 // حقل كلمة المرور
-                PasswordTextField(
+                CustomTextField(
                   controller: _passwordController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
