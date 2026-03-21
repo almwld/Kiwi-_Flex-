@@ -5,7 +5,6 @@ publish_to: none
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
-
 dependencies:
   flutter:
     sdk: flutter
@@ -33,12 +32,9 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   flutter_screenutil: ^5.9.0
   google_fonts: ^6.1.0
-
 dev_dependencies:
   flutter_test:
-    sdk: flutter
   flutter_lints: ^3.0.1
-
 flutter:
   uses-material-design: true
   fonts:
@@ -51,7 +47,6 @@ flutter:
     - assets/icons/svg/
     - assets/animations/
     - .env
-
 flutter_launcher_icons:
   android: true
   ios: true
@@ -60,3 +55,4 @@ flutter_launcher_icons:
   adaptive_icon_foreground: "assets/icons/icon.png"
   min_sdk_android: 21
   remove_alpha_ios: true
+  flutter_launcher_icons: ^0.13.1
