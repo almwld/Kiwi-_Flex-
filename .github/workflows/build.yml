@@ -15,18 +15,29 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Create .env file from secrets
+      - name: Create fresh Flutter project
         run: |
-          echo "SUPABASE_URL=${{ secrets.SUPABASE_URL }}" >> .env
-          echo "SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}" >> .env
-          echo "MAP_API_KEY=${{ secrets.MAP_API_KEY }}" >> .env
+          mkdir -p /tmp/fresh
+          cd /tmp/fresh
+          flutter create --org com.flexyemen --project-name fresh_project .
+          cd $GITHUB_WORKSPACE
+          cp -r lib /tmp/fresh/
+          cp -r assets /tmp/fresh/ 2>/dev/null || true
+          cp pubspec.yaml /tmp/fresh/
+          cp .env /tmp/fresh/ 2>/dev/null || true
+          rm -rf lib assets pubspec.yaml .env android ios
+          cp -r /tmp/fresh/. .
+          rm -rf /tmp/fresh
 
-      - name: Build APK with dart-define
+      - name: Set app name
         run: |
-          flutter build apk --release --split-per-abi \
-            --dart-define=SUPABASE_URL="${{ secrets.SUPABASE_URL }}" \
-            --dart-define=SUPABASE_ANON_KEY="${{ secrets.SUPABASE_ANON_KEY }}" \
-            --dart-define=MAP_API_KEY="${{ secrets.MAP_API_KEY }}"
+          sed -i 's/android:label="fresh_project"/android:label="Flex Yemen Market"/g' android/app/src/main/AndroidManifest.xml
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Build APK (split-per-abi)
+        run: flutter build apk --release --split-per-abi
 
       - name: Upload APKs
         uses: actions/upload-artifact@v4
