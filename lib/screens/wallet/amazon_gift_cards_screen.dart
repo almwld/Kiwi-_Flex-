@@ -9,7 +9,7 @@ class AmazonGiftCardsScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'أمازون'),
+      appBar: CustomAppBar(title: 'أمازون'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

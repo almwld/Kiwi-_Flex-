@@ -9,7 +9,7 @@ class GamesScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'ألعاب'),
+      appBar: CustomAppBar(title: 'ألعاب'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

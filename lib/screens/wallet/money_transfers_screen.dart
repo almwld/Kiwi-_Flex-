@@ -9,7 +9,7 @@ class MoneyTransfersScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'تحويلات مالية'),
+      appBar: CustomAppBar(title: 'تحويلات مالية'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

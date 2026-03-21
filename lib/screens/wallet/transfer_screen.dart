@@ -33,7 +33,7 @@ class _TransferScreenState extends State<TransferScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'تحويل'),
+      appBar: CustomAppBar(title: 'تحويل'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(

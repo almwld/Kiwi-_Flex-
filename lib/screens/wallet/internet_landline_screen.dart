@@ -9,7 +9,7 @@ class InternetLandlineScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'إنترنت وهاتف'),
+      appBar: CustomAppBar(title: 'إنترنت وهاتف'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

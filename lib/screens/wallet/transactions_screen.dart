@@ -16,7 +16,7 @@ class TransactionsScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'سجل العمليات'),
+      appBar: CustomAppBar(title: 'سجل العمليات'),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: transactions.length,

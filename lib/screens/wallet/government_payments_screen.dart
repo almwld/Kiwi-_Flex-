@@ -9,7 +9,7 @@ class GovernmentPaymentsScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'مدفوعات حكومية'),
+      appBar: CustomAppBar(title: 'مدفوعات حكومية'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

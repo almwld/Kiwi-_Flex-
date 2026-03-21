@@ -9,7 +9,7 @@ class GiftCardsScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'بطاقات نت'),
+      appBar: CustomAppBar(title: 'بطاقات نت'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

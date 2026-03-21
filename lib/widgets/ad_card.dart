@@ -74,7 +74,7 @@ class AdCard extends StatelessWidget {
                   ),
                 ),
                 // شارة الخصم
-                if (product.hasDiscount)
+                if (product.discountPercentage ?? 0age != null)
                   Positioned(
                     top: 8,
                     left: 8,
@@ -88,7 +88,7 @@ class AdCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        '-${product.discountPercent.toInt()}%',
+                        '-${product.discountPercentage ?? 0.toInt()}%',
                         style: const TextStyle(
                           fontFamily: 'Changa',
                           color: Colors.white,
@@ -99,7 +99,7 @@ class AdCard extends StatelessWidget {
                     ),
                   ),
                 // شارة المزاد
-                if (product.isAuction)
+                if (false)
                   Positioned(
                     top: 8,
                     right: 8,
@@ -188,7 +188,7 @@ class AdCard extends StatelessWidget {
                           color: AppTheme.goldColor,
                         ),
                       ),
-                      if (product.hasDiscount) ...[
+                      if (product.discountPercentage ?? 0age != null) ...[
                         const SizedBox(width: 8),
                         Text(
                           '${product.oldPrice}',
@@ -214,7 +214,7 @@ class AdCard extends StatelessWidget {
                       const SizedBox(width: 4),
                       Expanded(
                         child: Text(
-                          product.city ?? 'غير محدد',
+                          product.city 'غير محدد',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(

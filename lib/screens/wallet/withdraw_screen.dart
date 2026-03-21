@@ -58,7 +58,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'سحب'),
+      appBar: CustomAppBar(title: 'سحب'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(

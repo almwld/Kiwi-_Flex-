@@ -9,7 +9,7 @@ class PayBundlesScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'سداد باقات'),
+      appBar: CustomAppBar(title: 'سداد باقات'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

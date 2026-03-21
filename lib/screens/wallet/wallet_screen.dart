@@ -53,7 +53,7 @@ class _WalletScreenState extends State<WalletScreen> {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'المحفظة'),
+      appBar: CustomAppBar(title: 'المحفظة'),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(

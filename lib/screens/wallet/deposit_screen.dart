@@ -59,7 +59,7 @@ class _DepositScreenState extends State<DepositScreen> {
 
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'إيداع'),
+      appBar: CustomAppBar(title: 'إيداع'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(

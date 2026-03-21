@@ -9,7 +9,7 @@ class AppsScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? AppTheme.darkBackground : AppTheme.lightBackground,
-      appBar: const CustomAppBar(title: 'تطبيقات'),
+      appBar: CustomAppBar(title: 'تطبيقات'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
